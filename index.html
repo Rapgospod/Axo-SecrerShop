@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0e0a2a">
-<meta name="description" content="Axo SecretShop: анимированные стикеры и эмодзи для Telegram, оформление каналов, анимация Spine, логотипы. Стартовые наборы со скидкой.">
+<meta name="description" content="Axo SecretShop: animated stickers and emoji for Telegram, channel design, Spine animation, logos. Starter packs at a discount.">
 <meta property="og:title" content="Axo SecretShop">
-<meta property="og:description" content="Анимированные стикеры и эмодзи для Telegram, оформление каналов, анимация Spine. Стартовые наборы со скидкой.">
+<meta property="og:description" content="Animated stickers and emoji for Telegram, channel design, Spine animation. Starter packs at a discount.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://axo-secretshop.vercel.app/">
 <meta property="og:image" content="https://axo-secretshop.vercel.app/og.jpg">
@@ -73,8 +73,8 @@ h1,h2,h3,h4{font-family:var(--font);font-weight:900;line-height:1.05;margin:0;te
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
 .nav::before{content:"";position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:linear-gradient(rgba(14,10,42,.95) 55%,transparent)}
 .logo{font-family:var(--brush);font-size:22px;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
-.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:700;color:var(--muted)}
-.nav ul a:hover{color:var(--paper)}
+.nav>ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:700;color:var(--muted)}
+.nav>ul a:hover{color:var(--paper)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--grad);color:#fff;font:800 14px var(--font);padding:12px 22px;border-radius:999px;border:0;cursor:pointer;box-shadow:0 8px 24px -8px rgba(111,77,240,.8);transition:transform .2s,box-shadow .2s,filter .2s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(111,77,240,.95);filter:brightness(1.08)}
 .btn.ghost{background:rgba(255,255,255,.04);color:var(--paper);border:1px solid var(--line);box-shadow:none}
@@ -114,7 +114,7 @@ section{padding-block:clamp(48px,7vw,96px)}
 .filters button{font:800 13px var(--font);padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer}
 .filters button:hover{color:var(--paper)}
 .filters button[aria-pressed="true"]{background:var(--grad);color:#fff;border-color:transparent}
-.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scroll-padding-inline:max(16px,env(safe-area-inset-left,0px));scrollbar-width:thin;scrollbar-color:var(--ink-3) transparent}
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scroll-padding-inline:max(16px,env(safe-area-inset-left,0px));scrollbar-width:auto;scrollbar-color:var(--lilac) rgba(255,255,255,.08)}
 .work{flex:0 0 min(76vw,340px);scroll-snap-align:start}
 .work.wide{flex-basis:min(88vw,560px)}
 .cover{aspect-ratio:1/1;border-radius:24px;position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s;background:var(--ink-2);border:1px solid var(--line)}
@@ -235,7 +235,7 @@ footer a:hover{color:var(--paper)}
 
 .bar{display:none}
 @media (max-width:900px){
-  .nav ul{display:none}
+  .nav>ul{display:none}
   .order{grid-template-columns:1fr}
   .sum{position:static}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -267,6 +267,24 @@ footer a:hover{color:var(--paper)}
 .filters[hidden]{display:none}
 .work.empty .cover{border-style:dashed;border-color:rgba(185,162,255,.4)}
 .work.empty h3{color:#cfc8ee}
+.langdd{position:relative}
+#langbtn{display:flex;align-items:center;gap:6px;font:800 13px var(--font);letter-spacing:.04em;padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--paper);cursor:pointer}
+#langbtn:hover{background:rgba(185,162,255,.14)}
+#langbtn svg{width:16px;height:16px;flex:none}
+#langbtn .car{width:11px;height:11px;transition:transform .2s}
+#langbtn[aria-expanded="true"] .car{transform:rotate(180deg)}
+#langmenu{position:absolute;right:0;top:calc(100% + 8px);margin:0;padding:6px;list-style:none;min-width:180px;background:var(--ink-2);border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 50px -20px rgba(0,0,0,.9);z-index:40}
+#langmenu[hidden]{display:none}
+#langmenu button{width:100%;text-align:left;font:700 14px var(--font);padding:10px 12px;border-radius:10px;border:0;background:transparent;color:var(--paper);cursor:pointer}
+#langmenu button:hover{background:rgba(185,162,255,.14)}
+#langmenu button[aria-selected="true"]{background:rgba(123,92,240,.38)}
+.ctrl .more{margin-left:0}
+/* квадратная рамка без aspect-ratio, работает и на старых телефонах */
+.cover{aspect-ratio:auto}
+.cover::before{content:"";display:block;padding-top:100%}
+.cover svg,.cover img,.cover video,.lot{position:absolute;top:0;left:0;width:100%;height:100%}
+.lot canvas{position:absolute;top:0;left:0;width:100%!important;height:100%!important}
+.cover.stk img{object-fit:contain;padding:8%}
 </style>
 </head>
 <body>
@@ -281,10 +299,13 @@ footer a:hover{color:var(--paper)}
       <li><a href="#faq" data-i="nav_faq">Вопросы</a></li>
     </ul>
     <div class="navr">
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" data-lang="ru" aria-pressed="true">RU</button>
-        <button type="button" data-lang="uk" aria-pressed="false">UA</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <div class="langdd">
+        <button type="button" id="langbtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.600 3.800 5.600 3.800 9s-1.300 6.400-3.800 9c-2.500-2.600-3.800-5.600-3.800-9S9.500 5.600 12 3z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span id="langcur">EN</span>
+          <svg class="car" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul id="langmenu" role="listbox" hidden></ul>
       </div>
       <a class="btn" href="#order" data-i="nav_cta">Заказать</a>
     </div>
@@ -318,12 +339,9 @@ footer a:hover{color:var(--paper)}
       <p data-i="works_p">Выберите направление и листайте. Больше примеров в нашем канале.</p>
     </div>
     <div class="filters" id="filters" role="group" aria-label="Categories"></div>
-    <div class="filters sub" id="subfilters" role="group" aria-label="Emoji types" hidden></div>
+    <div class="filters sub" id="subfilters" role="group" aria-label="Types" hidden></div>
     <div class="rail" id="rail" tabindex="0" aria-label="Works"></div>
     <div class="ctrl">
-      <button id="prev" aria-label="Previous">←</button>
-      <button id="next" aria-label="Next">→</button>
-      <span id="count"></span>
       <a class="btn ghost more" href="https://t.me/axoportfolio" target="_blank" rel="noopener" data-i="works_all_tg">Всё портфолио в Telegram</a>
     </div>
   </section>
@@ -443,146 +461,155 @@ footer a:hover{color:var(--paper)}
 <script>
 (function(){
   var MANAGER="Rapgospod";
-  var LANGS=["ru","uk","en"],LI=0;
+  var LANGS=["en","uk","kk","be","ru","zh"];
+  var IDX={ru:0,uk:1,en:2,kk:3,be:4,zh:5};
+  var NAMES={en:"English",uk:"Українська",kk:"Қазақша",be:"Беларуская",ru:"Русский",zh:"中文"};
+  var SHORT={en:"EN",uk:"UA",kk:"KZ",be:"BY",ru:"RU",zh:"中文"};
+  var LANG="en",LI=2;
 
   /* ===== ТЕКСТЫ: [русский, украинский, английский] ===== */
+  /* порядок в массивах: ru, uk, en, kk, be, zh */
   var D={
-    nav_works:["Работы","Роботи","Works"],
-    nav_packs:["Наборы","Набори","Packs"],
-    nav_order:["Цены и заказ","Ціни та замовлення","Prices & order"],
-    nav_process:["Как работаем","Як працюємо","How we work"],
-    nav_faq:["Вопросы","Питання","FAQ"],
-    nav_cta:["Заказать","Замовити","Order"],
-    hero_pre:["сделано в","зроблено в","made in"],
-    hero_lead:["Анимированные стикеры и эмодзи для Telegram, оформление каналов, анимация Spine для игр, персонажи и логотипы. Выберите услуги, посчитайте заказ и отправьте менеджеру в пару кликов.","Анімовані стікери та емодзі для Telegram, оформлення каналів, анімація Spine для ігор, персонажі та логотипи. Оберіть послуги, порахуйте замовлення й надішліть менеджеру в пару кліків.","Animated stickers and emoji for Telegram, channel design, Spine animation for games, characters and logos. Pick your services, calculate the order and send it to the manager in a couple of clicks."],
-    hero_calc:["Рассчитать заказ","Розрахувати замовлення","Calculate order"],
-    hero_portfolio:["Портфолио в Telegram","Портфоліо в Telegram","Portfolio on Telegram"],
-    chip_packs:["Стартовые наборы со скидкой","Стартові набори зі знижкою","Starter packs with a discount"],
-    chip_1:["Стикеры PNG и TGS","Стікери PNG і TGS","PNG and TGS stickers"],
-    chip_2:["Эмодзи шаблонные и кастомные","Емодзі шаблонні та кастомні","Template and custom emoji"],
-    chip_3:["Spine для игр","Spine для ігор","Spine for games"],
-    chip_4:["Срочные заказы","Термінові замовлення","Rush orders"],
-    works_h:["Работы","Роботи","Works"],
-    works_p:["Выберите направление и листайте. Больше примеров в нашем канале.","Оберіть напрямок і гортайте. Більше прикладів у нашому каналі.","Pick a category and swipe. More examples in our channel."],
-    works_all_tg:["Всё портфолио в Telegram","Усе портфоліо в Telegram","Full portfolio on Telegram"],
-    tab_s:["Наборы стикеров","Набори стікерів","Sticker packs"],
-    tab_e:["Наборы эмодзи","Набори емодзі","Emoji packs"],
-    tab_a:["Аватары","Аватари","Avatars"],
-    w_s:["Стикер","Стікер","Sticker"],
-    w_e:["Эмодзи","Емодзі","Emoji"],
-    w_a:["Аватар","Аватар","Avatar"],
-    sub_ec:["Кастомные (на шаблоне)","Кастомні (на шаблоні)","Custom (template-based)"],
-    sub_el:["Шаблонные","Шаблонні","Template"],
-    sub_e:["Полностью кастомные","Повністю кастомні","Fully custom"],
-    sub_s:["Анимированный стикер, TGS","Анімований стікер, TGS","Animated sticker, TGS"],
-    sub_a:["Аватарка для канала или чата","Аватарка для каналу чи чату","Avatar for a channel or chat"],
-    soon:["Скоро добавим","Незабаром додамо","Coming soon"],
-    packs_h:["Стартовые наборы","Стартові набори","Starter packs"],
-    packs_sub:["6 готовых пакетов со скидкой, экономия до $65","6 готових пакетів зі знижкою, економія до $65","6 ready-made packs at a discount, save up to $65"],
-    packs_open:["Смотреть наборы","Дивитися набори","View packs"],
-    packs_close:["Свернуть","Згорнути","Collapse"],
-    packs_note:["Скидка для новых клиентов уже включена. Дополнительные услуги оплачиваются отдельно, индивидуальные пожелания обсуждаются отдельно.","Знижка для нових клієнтів уже включена. Додаткові послуги оплачуються окремо, індивідуальні побажання обговорюються окремо.","The new-client discount is already included. Extra services are paid separately; custom requests are discussed separately."],
-    go_order:["Перейти к заказу","Перейти до замовлення","Go to order"],
-    pack_tag:["Набор","Набір","Pack"],
-    pack_pick:["Выбрать набор","Обрати набір","Choose pack"],
-    pack_in:["В заказе ✓","У замовленні ✓","In order ✓"],
-    order_h:["Цены и заказ","Ціни та замовлення","Prices & order"],
-    order_p:["Выбранные наборы и отдельные услуги собираются в одну смету вместе с готовым сообщением менеджеру.","Обрані набори та окремі послуги збираються в один кошторис разом із готовим повідомленням менеджеру.","Selected packs and individual services are collected into one estimate, together with a ready message to the manager."],
-    terms1_b:["Срочно: ×2","Терміново: ×2","Rush: ×2"],
-    terms1_s:["Выполнение в кратчайшие сроки, стоимость умножается на два.","Виконання в найкоротші терміни, вартість множиться на два.","Done as fast as possible; the price is doubled."],
-    terms2_b:["Нет в прайсе?","Немає в прайсі?","Not on the list?"],
-    terms2_s:["Всё, что не указано выше, обсуждаем индивидуально. Цена договорная.","Усе, чого немає вище, обговорюємо індивідуально. Ціна договірна.","Anything not listed above is discussed individually. The price is negotiable."],
-    sum_h:["Ваш заказ","Ваше замовлення","Your order"],
-    sum_empty:["Пока ничего не выбрано","Поки нічого не обрано","Nothing selected yet"],
-    sum_rush:["Срочно, цена ×2","Терміново, ціна ×2","Rush, price ×2"],
-    sum_ph:["Коротко опишите задачу: что нужно, референсы, сроки","Коротко опишіть завдання: що потрібно, референси, терміни","Briefly describe the task: what you need, references, deadline"],
-    sum_total:["Итого","Разом","Total"],
-    sum_send:["Отправить менеджеру","Надіслати менеджеру","Send to manager"],
-    sum_copy:["Скопировать сообщение","Скопіювати повідомлення","Copy message"],
-    sum_copied:["Скопировано","Скопійовано","Copied"],
-    sum_hint:["Откроется Telegram с готовым текстом. Цену окончательно подтверждает менеджер.","Відкриється Telegram із готовим текстом. Остаточну ціну підтверджує менеджер.","Telegram will open with the text ready. The manager confirms the final price."],
-    msg_hello:["Здравствуйте! Хочу заказать в Axo SecretShop:","Вітаю! Хочу замовити в Axo SecretShop:","Hello! I'd like to order from Axo SecretShop:"],
-    msg_pack:["Набор","Набір","Pack"],
-    msg_rush:["Срочно (×2)","Терміново (×2)","Rush (×2)"],
-    msg_total:["Итого по прайсу:","Разом за прайсом:","Total by price list:"],
-    msg_task:["Задача:","Завдання:","Task:"],
-    msg_later:["(опишу ниже)","(опишу нижче)","(will describe below)"],
-    from:["от","від","from"],
-    unit:["шт.","шт.","pcs."],
-    process_h:["Как работаем","Як працюємо","How we work"],
-    process_p:["Четыре шага. Вы всегда знаете, что дальше.","Чотири кроки. Ви завжди знаєте, що далі.","Four steps. You always know what's next."],
-    st1_h:["Заявка","Заявка","Request"],
-    st1_p:["Собираете заказ здесь или пишете менеджеру напрямую.","Збираєте замовлення тут або пишете менеджеру напряму.","Build your order here or message the manager directly."],
-    st2_h:["Смета и сроки","Кошторис і терміни","Estimate & deadline"],
-    st2_p:["Менеджер подтверждает цену, сроки и условия оплаты.","Менеджер підтверджує ціну, терміни й умови оплати.","The manager confirms the price, deadline and payment terms."],
-    st3_h:["Работа","Робота","Work"],
-    st3_p:["Художница рисует и анимирует, промежуточный результат вы видите по ходу.","Художниця малює й анімує, проміжний результат ви бачите по ходу.","The artist draws and animates; you see interim results along the way."],
-    st4_h:["Сдача","Здача","Delivery"],
-    st4_p:["Получаете готовые файлы в нужных форматах.","Отримуєте готові файли у потрібних форматах.","You get the finished files in the formats you need."],
-    team_h:["Кто с вами работает","Хто з вами працює","Who you'll work with"],
-    team_p:["Вы общаетесь с менеджером, а делает художница.","Ви спілкуєтесь із менеджером, а робить художниця.","You talk to the manager; the artist does the work."],
-    mgr_h:["Менеджер","Менеджер","Manager"],
-    mgr_role:["Заказы, сроки, оплата","Замовлення, терміни, оплата","Orders, deadlines, payment"],
-    mgr_p:["Принимает заявки, считает смету, держит связь и следит, чтобы всё сдавалось вовремя.","Приймає заявки, рахує кошторис, тримає зв'язок і стежить, щоб усе здавалося вчасно.","Takes requests, prepares the estimate, stays in touch and makes sure everything is delivered on time."],
-    art_h:["Художница","Художниця","Artist"],
-    art_role:["Рисунок и анимация","Малюнок і анімація","Drawing & animation"],
-    art_p:["Рисует стикеры, эмодзи и персонажей, делает анимацию TGS и Spine.","Малює стікери, емодзі та персонажів, робить анімацію TGS і Spine.","Draws stickers, emoji and characters, makes TGS and Spine animation."],
-    faq_h:["Вопросы","Питання","FAQ"],
-    faq1_q:["Как сделать заказ?","Як зробити замовлення?","How do I place an order?"],
-    faq1_a:["Выберите услуги в блоке «Цены и заказ», нажмите «Отправить менеджеру». Откроется Telegram с готовым сообщением. Либо напишите @Rapgospod своими словами.","Оберіть послуги в блоці «Ціни та замовлення» і натисніть «Надіслати менеджеру». Відкриється Telegram із готовим повідомленням. Або напишіть @Rapgospod своїми словами.","Choose services in the “Prices & order” block and press “Send to manager”. Telegram will open with a ready message. Or just write to @Rapgospod in your own words."],
-    faq2_q:["Чем отличаются шаблонные и кастомные эмодзи?","Чим відрізняються шаблонні та кастомні емодзі?","What's the difference between template and custom emoji?"],
-    faq2_a:["Шаблонные делаются на основе готовых шаблонов анимации. Кастомные берут шаблон за основу и дорабатываются под вас. Полностью кастомные получают уникальную анимацию с нуля.","Шаблонні роблять на основі готових шаблонів анімації. Кастомні беруть шаблон за основу й доопрацьовуються під вас. Повністю кастомні отримують унікальну анімацію з нуля.","Template emoji are made from ready animation templates. Custom ones start from a template and are reworked for you. Fully custom ones get unique animation from scratch."],
-    faq3_q:["Что значит «срочно»?","Що означає «терміново»?","What does “rush” mean?"],
-    faq3_a:["Заказ выполняется в кратчайшие сроки, а стоимость умножается на два.","Замовлення виконується в найкоротші терміни, а вартість множиться на два.","The order is done as fast as possible and the price is doubled."],
-    faq4_q:["Можно заказать то, чего нет в прайсе?","Чи можна замовити те, чого немає в прайсі?","Can I order something that isn't on the price list?"],
-    faq4_a:["Да. Напишите менеджеру, что нужно. Цена в таком случае договорная.","Так. Напишіть менеджеру, що потрібно. Ціна в такому разі договірна.","Yes. Tell the manager what you need. The price is negotiable in that case."],
-    faq5_q:["Где посмотреть больше работ?","Де подивитися більше робіт?","Where can I see more work?"],
-    faq5_a:["В нашем портфолио в Telegram: t.me/axoportfolio.","У нашому портфоліо в Telegram: t.me/axoportfolio.","In our Telegram portfolio: t.me/axoportfolio."],
-    cta_h:["есть проект?","є проєкт?","got a project?"],
-    cta_p:["Напишите менеджеру, что хотите сделать, и он сразу назовёт цену и сроки.","Напишіть менеджеру, що хочете зробити, і він одразу назве ціну та терміни.","Tell the manager what you want to make and he'll quote a price and deadline right away."],
-    cta_write:["Написать @Rapgospod","Написати @Rapgospod","Message @Rapgospod"],
-    cta_port:["Портфолио","Портфоліо","Portfolio"],
-    bar_order:["Заказ","Замовлення","Order"],
-    bar_tg:["Написать в Telegram","Написати в Telegram","Message on Telegram"]
+    "nav_works":["Работы", "Роботи", "Works", "Жұмыстар", "Працы", "作品"],
+    "nav_packs":["Наборы", "Набори", "Packs", "Топтамалар", "Наборы", "套餐"],
+    "nav_order":["Цены и заказ", "Ціни та замовлення", "Prices & order", "Бағалар және тапсырыс", "Цэны і заказ", "价格与下单"],
+    "nav_process":["Как работаем", "Як працюємо", "How we work", "Қалай жұмыс істейміз", "Як мы працуем", "合作流程"],
+    "nav_faq":["Вопросы", "Питання", "FAQ", "Сұрақтар", "Пытанні", "常见问题"],
+    "nav_cta":["Заказать", "Замовити", "Order", "Тапсырыс беру", "Замовіць", "下单"],
+    "hero_pre":["сделано в", "зроблено в", "made in", "жасаған", "зроблена ў", "出品于"],
+    "hero_lead":["Анимированные стикеры и эмодзи для Telegram, оформление каналов, анимация Spine для игр, персонажи и логотипы. Выберите услуги, посчитайте заказ и отправьте менеджеру в пару кликов.", "Анімовані стікери та емодзі для Telegram, оформлення каналів, анімація Spine для ігор, персонажі та логотипи. Оберіть послуги, порахуйте замовлення й надішліть менеджеру в пару кліків.", "Animated stickers and emoji for Telegram, channel design, Spine animation for games, characters and logos. Pick your services, calculate the order and send it to the manager in a couple of clicks.", "Telegram үшін анимациялық стикерлер мен эмодзилер, арналарды безендіру, ойындарға арналған Spine анимациясы, кейіпкерлер мен логотиптер. Қызметтерді таңдаңыз, тапсырысты есептеңіз және менеджерге бірнеше басумен жіберіңіз.", "Анімаваныя стыкеры і эмодзі для Telegram, афармленне каналаў, анімацыя Spine для гульняў, персанажы і лагатыпы. Абярыце паслугі, падлічыце заказ і адпраўце менеджару за пару клікаў.", "Telegram 动态贴纸与表情、频道包装、游戏 Spine 动画、角色与标志设计。选择服务、计算订单，几下点击即可发送给经理。"],
+    "hero_calc":["Рассчитать заказ", "Розрахувати замовлення", "Calculate order", "Тапсырысты есептеу", "Разлічыць заказ", "计算订单"],
+    "hero_portfolio":["Портфолио в Telegram", "Портфоліо в Telegram", "Portfolio on Telegram", "Telegram-дағы портфолио", "Партфоліо ў Telegram", "Telegram 作品集"],
+    "chip_packs":["Стартовые наборы со скидкой", "Стартові набори зі знижкою", "Starter packs with a discount", "Жеңілдікпен бастапқы топтамалар", "Стартавыя наборы са зніжкай", "入门套餐享折扣"],
+    "chip_1":["Стикеры PNG и TGS", "Стікери PNG і TGS", "PNG and TGS stickers", "PNG және TGS стикерлер", "Стыкеры PNG і TGS", "PNG 与 TGS 贴纸"],
+    "chip_2":["Эмодзи шаблонные и кастомные", "Емодзі шаблонні та кастомні", "Template and custom emoji", "Үлгілік және кастом эмодзилер", "Эмодзі шаблонныя і кастомныя", "模板与定制表情"],
+    "chip_3":["Spine для игр", "Spine для ігор", "Spine for games", "Ойындарға арналған Spine", "Spine для гульняў", "游戏 Spine 动画"],
+    "chip_4":["Срочные заказы", "Термінові замовлення", "Rush orders", "Шұғыл тапсырыстар", "Тэрміновыя заказы", "加急订单"],
+    "works_h":["Работы", "Роботи", "Works", "Жұмыстар", "Працы", "作品"],
+    "works_p":["Выберите направление и листайте. Больше примеров в нашем канале.", "Оберіть напрямок і гортайте. Більше прикладів у нашому каналі.", "Pick a category and swipe. More examples in our channel.", "Бағытты таңдап, жылжытыңыз. Көбірек мысал біздің арнада.", "Абярыце кірунак і гартайце. Больш прыкладаў у нашым канале.", "选择类别并左右滑动。更多示例请见我们的频道。"],
+    "works_all_tg":["Всё портфолио в Telegram", "Усе портфоліо в Telegram", "Full portfolio on Telegram", "Бүкіл портфолио Telegram-да", "Усё партфоліо ў Telegram", "Telegram 完整作品集"],
+    "tab_s":["Наборы стикеров", "Набори стікерів", "Sticker packs", "Стикер топтамалары", "Наборы стыкераў", "贴纸套装"],
+    "tab_e":["Наборы эмодзи", "Набори емодзі", "Emoji packs", "Эмодзи топтамалары", "Наборы эмодзі", "表情套装"],
+    "tab_a":["Аватары", "Аватари", "Avatars", "Аватарлар", "Аватары", "头像"],
+    "w_s":["Стикер", "Стікер", "Sticker", "Стикер", "Стыкер", "贴纸"],
+    "w_e":["Эмодзи", "Емодзі", "Emoji", "Эмодзи", "Эмодзі", "表情"],
+    "w_a":["Аватар", "Аватар", "Avatar", "Аватар", "Аватар", "头像"],
+    "sub_ec":["Кастомные (на шаблоне)", "Кастомні (на шаблоні)", "Custom (template-based)", "Кастом (үлгі негізінде)", "Кастомныя (на шаблоне)", "定制（基于模板）"],
+    "sub_el":["Шаблонные", "Шаблонні", "Template", "Үлгілік", "Шаблонныя", "模板版"],
+    "sub_e":["Полностью кастомные", "Повністю кастомні", "Fully custom", "Толық кастом", "Цалкам кастомныя", "完全定制"],
+    "sub_s":["Детализированные", "Деталізовані", "Detailed", "Егжей-тегжейлі", "Дэталізаваныя", "精细版"],
+    "sub_a":["Аватарка для канала или чата", "Аватарка для каналу чи чату", "Avatar for a channel or chat", "Арна немесе чат аватары", "Аватарка для канала або чата", "频道或群聊头像"],
+    "soon":["Скоро добавим", "Незабаром додамо", "Coming soon", "Жақында қосамыз", "Хутка дадамо", "即将上线"],
+    "packs_h":["Стартовые наборы", "Стартові набори", "Starter packs", "Бастапқы топтамалар", "Стартавыя наборы", "入门套餐"],
+    "packs_sub":["6 готовых пакетов со скидкой, экономия до $65", "6 готових пакетів зі знижкою, економія до $65", "6 ready-made packs at a discount, save up to $65", "6 жеңілдікпен дайын пакет, $65-ға дейін үнемдеу", "6 гатовых пакетаў са зніжкай, эканомія да $65", "6 款优惠套餐，最高立省 $65"],
+    "packs_open":["Смотреть наборы", "Дивитися набори", "View packs", "Топтамаларды көру", "Паглядзець наборы", "查看套餐"],
+    "packs_close":["Свернуть", "Згорнути", "Collapse", "Жасыру", "Згарнуць", "收起"],
+    "packs_note":["Скидка для новых клиентов уже включена. Дополнительные услуги оплачиваются отдельно, индивидуальные пожелания обсуждаются отдельно.", "Знижка для нових клієнтів уже включена. Додаткові послуги оплачуються окремо, індивідуальні побажання обговорюються окремо.", "The new-client discount is already included. Extra services are paid separately; custom requests are discussed separately.", "Жаңа клиенттерге арналған жеңілдік бағаға кіргізілген. Қосымша қызметтер бөлек төленеді, жеке тілектер бөлек талқыланады.", "Зніжка для новых кліентаў ужо ўключана. Дадатковыя паслугі аплачваюцца асобна, індывідуальныя пажаданні абмяркоўваюцца асобна.", "新客户折扣已包含在内。附加服务另行收费，个性化需求另行商议。"],
+    "go_order":["Перейти к заказу", "Перейти до замовлення", "Go to order", "Тапсырысқа өту", "Перайсці да заказу", "前往下单"],
+    "pack_tag":["Набор", "Набір", "Pack", "Топтама", "Набор", "套餐"],
+    "pack_pick":["Выбрать набор", "Обрати набір", "Choose pack", "Топтаманы таңдау", "Абраць набор", "选择套餐"],
+    "pack_in":["В заказе ✓", "У замовленні ✓", "In order ✓", "Тапсырыста ✓", "У заказе ✓", "已加入 ✓"],
+    "order_h":["Цены и заказ", "Ціни та замовлення", "Prices & order", "Бағалар және тапсырыс", "Цэны і заказ", "价格与下单"],
+    "order_p":["Выбранные наборы и отдельные услуги собираются в одну смету вместе с готовым сообщением менеджеру.", "Обрані набори та окремі послуги збираються в один кошторис разом із готовим повідомленням менеджеру.", "Selected packs and individual services are collected into one estimate, together with a ready message to the manager.", "Таңдалған топтамалар мен жеке қызметтер менеджерге арналған дайын хабарламамен бірге бір сметаға жиналады.", "Абраныя наборы і асобныя паслугі збіраюцца ў адзін каштарыс разам з гатовым паведамленнем менеджару.", "所选套餐和单项服务会汇总成一份报价，并生成发给经理的消息。"],
+    "terms1_b":["Срочно: ×2", "Терміново: ×2", "Rush: ×2", "Шұғыл: ×2", "Тэрмінова: ×2", "加急：×2"],
+    "terms1_s":["Выполнение в кратчайшие сроки, стоимость умножается на два.", "Виконання в найкоротші терміни, вартість множиться на два.", "Done as fast as possible; the price is doubled.", "Мүмкіндігінше тез орындалады, құны екі есе артады.", "Выкананне ў найкарацейшыя тэрміны, кошт множыцца на два.", "以最快速度完成，价格翻倍。"],
+    "terms2_b":["Нет в прайсе?", "Немає в прайсі?", "Not on the list?", "Прайсте жоқ па?", "Няма ў прайсе?", "价目表里没有？"],
+    "terms2_s":["Всё, что не указано выше, обсуждаем индивидуально. Цена договорная.", "Усе, чого немає вище, обговорюємо індивідуально. Ціна договірна.", "Anything not listed above is discussed individually. The price is negotiable.", "Жоғарыда көрсетілмеген барлық нәрсені жеке талқылаймыз. Баға келісімді.", "Усё, чаго няма вышэй, абмяркоўваем індывідуальна. Цана дамоўная.", "以上未列出的内容我们单独商议，价格面议。"],
+    "sum_h":["Ваш заказ", "Ваше замовлення", "Your order", "Тапсырысыңыз", "Ваш заказ", "您的订单"],
+    "sum_empty":["Пока ничего не выбрано", "Поки нічого не обрано", "Nothing selected yet", "Әзірге ештеңе таңдалмаған", "Пакуль нічога не абрана", "尚未选择"],
+    "sum_rush":["Срочно, цена ×2", "Терміново, ціна ×2", "Rush, price ×2", "Шұғыл, баға ×2", "Тэрмінова, цана ×2", "加急，价格 ×2"],
+    "sum_ph":["Коротко опишите задачу: что нужно, референсы, сроки", "Коротко опишіть завдання: що потрібно, референси, терміни", "Briefly describe the task: what you need, references, deadline", "Тапсырманы қысқаша сипаттаңыз: не керек, референстер, мерзім", "Коратка апішыце задачу: што трэба, рэферэнсы, тэрміны", "请简要描述需求：内容、参考图、截止时间"],
+    "sum_total":["Итого", "Разом", "Total", "Барлығы", "Разам", "合计"],
+    "sum_send":["Отправить менеджеру", "Надіслати менеджеру", "Send to manager", "Менеджерге жіберу", "Адправіць менеджару", "发送给经理"],
+    "sum_copy":["Скопировать сообщение", "Скопіювати повідомлення", "Copy message", "Хабарламаны көшіру", "Скапіяваць паведамленне", "复制消息"],
+    "sum_copied":["Скопировано", "Скопійовано", "Copied", "Көшірілді", "Скапіявана", "已复制"],
+    "sum_hint":["Откроется Telegram с готовым текстом. Цену окончательно подтверждает менеджер.", "Відкриється Telegram із готовим текстом. Остаточну ціну підтверджує менеджер.", "Telegram will open with the text ready. The manager confirms the final price.", "Дайын мәтінмен Telegram ашылады. Соңғы бағаны менеджер растайды.", "Адкрыецца Telegram з гатовым тэкстам. Канчатковую цану пацвярджае менеджар.", "将打开 Telegram 并填好消息。最终价格由经理确认。"],
+    "msg_hello":["Здравствуйте! Хочу заказать в Axo SecretShop:", "Вітаю! Хочу замовити в Axo SecretShop:", "Hello! I'd like to order from Axo SecretShop:", "Сәлеметсіз бе! Axo SecretShop-тан тапсырыс бергім келеді:", "Вітаю! Хачу замовіць у Axo SecretShop:", "您好！我想在 Axo SecretShop 下单："],
+    "msg_pack":["Набор", "Набір", "Pack", "Топтама", "Набор", "套餐"],
+    "msg_rush":["Срочно (×2)", "Терміново (×2)", "Rush (×2)", "Шұғыл (×2)", "Тэрмінова (×2)", "加急（×2）"],
+    "msg_total":["Итого по прайсу:", "Разом за прайсом:", "Total by price list:", "Прайс бойынша барлығы:", "Разам па прайсе:", "按价目表合计："],
+    "msg_task":["Задача:", "Завдання:", "Task:", "Тапсырма:", "Задача:", "需求："],
+    "msg_later":["(опишу ниже)", "(опишу нижче)", "(will describe below)", "(төменде сипаттаймын)", "(апішу ніжэй)", "（详情见下文）"],
+    "from":["от", "від", "from", "бастап", "ад", "起"],
+    "unit":["шт.", "шт.", "pcs.", "дана", "шт.", "个"],
+    "process_h":["Как работаем", "Як працюємо", "How we work", "Қалай жұмыс істейміз", "Як мы працуем", "合作流程"],
+    "process_p":["Четыре шага. Вы всегда знаете, что дальше.", "Чотири кроки. Ви завжди знаєте, що далі.", "Four steps. You always know what's next.", "Төрт қадам. Әрі қарай не болатынын әрдайым білесіз.", "Чатыры крокі. Вы заўсёды ведаеце, што далей.", "四个步骤，您始终清楚下一步。"],
+    "st1_h":["Заявка", "Заявка", "Request", "Өтінім", "Заяўка", "提交需求"],
+    "st1_p":["Собираете заказ здесь или пишете менеджеру напрямую.", "Збираєте замовлення тут або пишете менеджеру напряму.", "Build your order here or message the manager directly.", "Тапсырысты осы жерде жинайсыз немесе менеджерге тікелей жазасыз.", "Збіраеце заказ тут або пішаце менеджару напрамую.", "在这里生成订单，或直接联系经理。"],
+    "st2_h":["Смета и сроки", "Кошторис і терміни", "Estimate & deadline", "Смета және мерзім", "Каштарыс і тэрміны", "报价与工期"],
+    "st2_p":["Менеджер подтверждает цену, сроки и условия оплаты.", "Менеджер підтверджує ціну, терміни й умови оплати.", "The manager confirms the price, deadline and payment terms.", "Менеджер бағаны, мерзімді және төлем шарттарын растайды.", "Менеджар пацвярджае цану, тэрміны і ўмовы аплаты.", "经理确认价格、工期和付款方式。"],
+    "st3_h":["Работа", "Робота", "Work", "Жұмыс", "Праца", "制作"],
+    "st3_p":["Художница рисует и анимирует, промежуточный результат вы видите по ходу.", "Художниця малює й анімує, проміжний результат ви бачите по ходу.", "The artist draws and animates; you see interim results along the way.", "Суретші сызады және анимациялайды, аралық нәтижені барысында көресіз.", "Мастачка малюе і анімуе, прамежкавы вынік вы бачыце па ходзе працы.", "画师绘制并制作动画，您可随时查看阶段成果。"],
+    "st4_h":["Сдача", "Здача", "Delivery", "Тапсыру", "Здача", "交付"],
+    "st4_p":["Получаете готовые файлы в нужных форматах.", "Отримуєте готові файли у потрібних форматах.", "You get the finished files in the formats you need.", "Дайын файлдарды қажетті форматта аласыз.", "Атрымліваеце гатовыя файлы ў патрэбных фарматах.", "获得所需格式的成品文件。"],
+    "team_h":["Кто с вами работает", "Хто з вами працює", "Who you'll work with", "Сізбен кім жұмыс істейді", "Хто з вамі працуе", "谁为您服务"],
+    "team_p":["Вы общаетесь с менеджером, а делает художница.", "Ви спілкуєтесь із менеджером, а робить художниця.", "You talk to the manager; the artist does the work.", "Сіз менеджермен сөйлесесіз, ал жұмысты суретші жасайды.", "Вы размаўляеце з менеджарам, а робіць мастачка.", "您与经理沟通，由画师负责制作。"],
+    "mgr_h":["Менеджер", "Менеджер", "Manager", "Менеджер", "Менеджар", "经理"],
+    "mgr_role":["Заказы, сроки, оплата", "Замовлення, терміни, оплата", "Orders, deadlines, payment", "Тапсырыстар, мерзім, төлем", "Заказы, тэрміны, аплата", "订单、工期、付款"],
+    "mgr_p":["Принимает заявки, считает смету, держит связь и следит, чтобы всё сдавалось вовремя.", "Приймає заявки, рахує кошторис, тримає зв'язок і стежить, щоб усе здавалося вчасно.", "Takes requests, prepares the estimate, stays in touch and makes sure everything is delivered on time.", "Өтінімдерді қабылдайды, смета есептейді, байланыста болады және бәрі уақытында тапсырылуын қадағалайды.", "Прымае заяўкі, лічыць каштарыс, трымае сувязь і сочыць, каб усё здавалася ўчас.", "接收需求、制作报价、保持沟通，并确保按时交付。"],
+    "art_h":["Художница", "Художниця", "Artist", "Суретші", "Мастачка", "画师"],
+    "art_role":["Рисунок и анимация", "Малюнок і анімація", "Drawing & animation", "Сурет және анимация", "Малюнак і анімацыя", "绘画与动画"],
+    "art_p":["Рисует стикеры, эмодзи и персонажей, делает анимацию TGS и Spine.", "Малює стікери, емодзі та персонажів, робить анімацію TGS і Spine.", "Draws stickers, emoji and characters, makes TGS and Spine animation.", "Стикерлер, эмодзилер және кейіпкерлер салады, TGS және Spine анимациясын жасайды.", "Малюе стыкеры, эмодзі і персанажаў, робіць анімацыю TGS і Spine.", "绘制贴纸、表情和角色，制作 TGS 与 Spine 动画。"],
+    "faq_h":["Вопросы", "Питання", "FAQ", "Сұрақтар", "Пытанні", "常见问题"],
+    "faq1_q":["Как сделать заказ?", "Як зробити замовлення?", "How do I place an order?", "Тапсырысты қалай беремін?", "Як зрабіць заказ?", "如何下单？"],
+    "faq1_a":["Выберите услуги в блоке «Цены и заказ», нажмите «Отправить менеджеру». Откроется Telegram с готовым сообщением. Либо напишите @Rapgospod своими словами.", "Оберіть послуги в блоці «Ціни та замовлення» і натисніть «Надіслати менеджеру». Відкриється Telegram із готовим повідомленням. Або напишіть @Rapgospod своїми словами.", "Choose services in the “Prices & order” block and press “Send to manager”. Telegram will open with a ready message. Or just write to @Rapgospod in your own words.", "«Бағалар және тапсырыс» блогында қызметтерді таңдап, «Менеджерге жіберу» түймесін басыңыз. Дайын хабарламамен Telegram ашылады. Немесе @Rapgospod-қа өз сөзіңізбен жазыңыз.", "Абярыце паслугі ў блоку «Цэны і заказ» і націсніце «Адправіць менеджару». Адкрыецца Telegram з гатовым паведамленнем. Або напішыце @Rapgospod сваімі словамі.", "在“价格与下单”板块选择服务，点击“发送给经理”，Telegram 会打开并填好消息。也可以直接用自己的话联系 @Rapgospod。"],
+    "faq2_q":["Чем отличаются шаблонные и кастомные эмодзи?", "Чим відрізняються шаблонні та кастомні емодзі?", "What's the difference between template and custom emoji?", "Үлгілік және кастом эмодзилердің айырмашылығы қандай?", "Чым адрозніваюцца шаблонныя і кастомныя эмодзі?", "模板表情和定制表情有什么区别？"],
+    "faq2_a":["Шаблонные делаются на основе готовых шаблонов анимации. Кастомные берут шаблон за основу и дорабатываются под вас. Полностью кастомные получают уникальную анимацию с нуля.", "Шаблонні роблять на основі готових шаблонів анімації. Кастомні беруть шаблон за основу й доопрацьовуються під вас. Повністю кастомні отримують унікальну анімацію з нуля.", "Template emoji are made from ready animation templates. Custom ones start from a template and are reworked for you. Fully custom ones get unique animation from scratch.", "Үлгілік эмодзилер дайын анимация үлгілері негізінде жасалады. Кастомдар үлгіні негізге алып, сізге арнап өңделеді. Толық кастомдар нөлден бастап бірегей анимация алады.", "Шаблонныя робяцца на аснове гатовых шаблонаў анімацыі. Кастомныя бяруць шаблон за аснову і дапрацоўваюцца пад вас. Цалкам кастомныя атрымліваюць унікальную анімацыю з нуля.", "模板表情基于现成的动画模板制作。定制表情以模板为基础，并按您的需求调整。完全定制表情则从零开始制作独特动画。"],
+    "faq3_q":["Что значит «срочно»?", "Що означає «терміново»?", "What does “rush” mean?", "«Шұғыл» дегеніміз не?", "Што значыць «тэрмінова»?", "“加急”是什么意思？"],
+    "faq3_a":["Заказ выполняется в кратчайшие сроки, а стоимость умножается на два.", "Замовлення виконується в найкоротші терміни, а вартість множиться на два.", "The order is done as fast as possible and the price is doubled.", "Тапсырыс мүмкіндігінше тез орындалады, ал құны екі есе артады.", "Заказ выконваецца ў найкарацейшыя тэрміны, а кошт множыцца на два.", "订单会以最快速度完成，价格翻倍。"],
+    "faq4_q":["Можно заказать то, чего нет в прайсе?", "Чи можна замовити те, чого немає в прайсі?", "Can I order something that isn't on the price list?", "Прайсте жоқ нәрсені тапсырыс беруге бола ма?", "Ці можна замовіць тое, чаго няма ў прайсе?", "价目表里没有的内容可以订吗？"],
+    "faq4_a":["Да. Напишите менеджеру, что нужно. Цена в таком случае договорная.", "Так. Напишіть менеджеру, що потрібно. Ціна в такому разі договірна.", "Yes. Tell the manager what you need. The price is negotiable in that case.", "Иә. Менеджерге не керегін жазыңыз. Бұл жағдайда баға келісімді.", "Так. Напішыце менеджару, што трэба. Цана ў такім выпадку дамоўная.", "可以。请告诉经理您的需求，此类订单价格面议。"],
+    "faq5_q":["Где посмотреть больше работ?", "Де подивитися більше робіт?", "Where can I see more work?", "Көбірек жұмысты қайдан көруге болады?", "Дзе паглядзець больш прац?", "在哪里可以看到更多作品？"],
+    "faq5_a":["В нашем портфолио в Telegram: t.me/axoportfolio.", "У нашому портфоліо в Telegram: t.me/axoportfolio.", "In our Telegram portfolio: t.me/axoportfolio.", "Telegram-дағы портфолиода: t.me/axoportfolio.", "У нашым партфоліо ў Telegram: t.me/axoportfolio.", "在我们的 Telegram 作品集：t.me/axoportfolio。"],
+    "cta_h":["есть проект?", "є проєкт?", "got a project?", "жоба бар ма?", "ёсць праект?", "有项目吗？"],
+    "cta_p":["Напишите менеджеру, что хотите сделать, и он сразу назовёт цену и сроки.", "Напишіть менеджеру, що хочете зробити, і він одразу назве ціну та терміни.", "Tell the manager what you want to make and he'll quote a price and deadline right away.", "Менеджерге не жасағыңыз келетінін жазыңыз, ол бірден баға мен мерзімді айтады.", "Напішыце менеджару, што хочаце зрабіць, і ён адразу назаве цану і тэрміны.", "告诉经理您想做什么，他会立即给出价格和工期。"],
+    "cta_write":["Написать @Rapgospod", "Написати @Rapgospod", "Message @Rapgospod", "@Rapgospod-қа жазу", "Напісаць @Rapgospod", "联系 @Rapgospod"],
+    "cta_port":["Портфолио", "Портфоліо", "Portfolio", "Портфолио", "Партфоліо", "作品集"],
+    "bar_order":["Заказ", "Замовлення", "Order", "Тапсырыс", "Заказ", "下单"],
+    "bar_tg":["Написать в Telegram", "Написати в Telegram", "Message on Telegram", "Telegram-да жазу", "Напісаць у Telegram", "在 Telegram 联系"],
+    "sub_l":["Упрощённые", "Спрощені", "Simplified", "Жеңілдетілген", "Спрошчаныя", "简化版"],
+    "sub_p":["Статичные", "Статичні", "Static", "Статикалық", "Статычныя", "静态"],
+    "sub_ap":["Аватарка профиля", "Аватарка профілю", "Profile avatar", "Профиль аватары", "Аватарка профілю", "个人头像"]
   };
-  function t(k){var a=D[k];return a?a[LI]:k}
-  function L(a){return a[LI]}
+  function t(k){var a=D[k];return a?(a[LI]||a[2]):k}
+  function L(a){return a[LI]||a[2]}
 
   /* ===== ПРАЙС ===== */
+  /* порядок названий: ru, uk, en, kk, be, zh */
   var PRICES=[
-    {g:["Статичные (PNG)","Статичні (PNG)","Static (PNG)"],c:"var(--sky)",items:[
-      {n:["Стикеры","Стікери","Stickers"],p:5,u:1},
-      {n:["Эмодзи","Емодзі","Emoji"],p:6,u:1}]},
-    {g:["Анимированные (TGS)","Анімовані (TGS)","Animated (TGS)"],c:"var(--violet)",items:[
-      {n:["Стикеры, упрощённые","Стікери, спрощені","Stickers, simplified"],p:40,u:1},
-      {n:["Стикеры, детализированные","Стікери, деталізовані","Stickers, detailed"],p:50,u:1},
-      {n:["Эмодзи, шаблонные","Емодзі, шаблонні","Emoji, template"],p:2,u:1},
-      {n:["Эмодзи, кастомные","Емодзі, кастомні","Emoji, custom"],p:20,u:1,note:["На основе шаблонов с индивидуальной проработкой","На основі шаблонів з індивідуальним опрацюванням","Based on templates with individual refinement"]},
-      {n:["Эмодзи, полностью кастомные","Емодзі, повністю кастомні","Emoji, fully custom"],p:30,u:1,note:["Уникальная анимация без шаблонов","Унікальна анімація без шаблонів","Unique animation, no templates"]}]},
-    {g:["Оформление канала и чата","Оформлення каналу та чату","Channel & chat design"],c:"var(--pink)",items:[
-      {n:["Аватарка","Аватарка","Avatar"],p:30},
-      {n:["Анимированная аватарка","Анімована аватарка","Animated avatar"],p:60},
-      {n:["Фон","Фон","Background"],p:30}]},
-    {g:["Анимация Spine","Анімація Spine","Spine animation"],c:"var(--orange)",items:[
-      {n:["Персонажи и объекты для игр","Персонажі та об'єкти для ігор","Characters & objects for games"],p:50,u:1},
-      {n:["Игровые символы","Ігрові символи","Game symbols"],p:20,u:1}]},
-    {g:["Дополнительно","Додатково","Extras"],c:"var(--mint)",items:[
-      {n:["PSD-файл персонажа для YouTube-модели","PSD-файл персонажа для YouTube-моделі","PSD file of a character for a YouTube model"],p:200},
-      {n:["NFT-коллекция","NFT-колекція","NFT collection"],p:200,from:1,note:["Цена от $200","Ціна від $200","Price from $200"]},
-      {n:["Логотип","Логотип","Logo"],p:50}]}
+    {g:["Статичные (PNG)","Статичні (PNG)","Static (PNG)","Статикалық (PNG)","Статычныя (PNG)","静态 (PNG)"],c:"var(--sky)",items:[
+      {n:["Стикеры","Стікери","Stickers","Стикерлер","Стыкеры","贴纸"],p:5,u:1},
+      {n:["Эмодзи","Емодзі","Emoji","Эмодзи","Эмодзі","表情"],p:6,u:1}]},
+    {g:["Анимированные (TGS)","Анімовані (TGS)","Animated (TGS)","Анимациялық (TGS)","Анімаваныя (TGS)","动态 (TGS)"],c:"var(--violet)",items:[
+      {n:["Стикеры, упрощённые","Стікери, спрощені","Stickers, simplified","Стикерлер, жеңілдетілген","Стыкеры, спрошчаныя","贴纸，简化版"],p:40,u:1},
+      {n:["Стикеры, детализированные","Стікери, деталізовані","Stickers, detailed","Стикерлер, егжей-тегжейлі","Стыкеры, дэталізаваныя","贴纸，精细版"],p:50,u:1},
+      {n:["Эмодзи, шаблонные","Емодзі, шаблонні","Emoji, template","Эмодзи, үлгілік","Эмодзі, шаблонныя","表情，模板版"],p:2,u:1},
+      {n:["Эмодзи, кастомные","Емодзі, кастомні","Emoji, custom","Эмодзи, кастом","Эмодзі, кастомныя","表情，定制版"],p:20,u:1,note:["На основе шаблонов с индивидуальной проработкой","На основі шаблонів з індивідуальним опрацюванням","Based on templates with individual refinement","Үлгі негізінде жеке өңдеумен","На аснове шаблонаў з індывідуальным апрацаваннем","基于模板并做个性化调整"]},
+      {n:["Эмодзи, полностью кастомные","Емодзі, повністю кастомні","Emoji, fully custom","Эмодзи, толық кастом","Эмодзі, цалкам кастомныя","表情，完全定制"],p:30,u:1,note:["Уникальная анимация без шаблонов","Унікальна анімація без шаблонів","Unique animation, no templates","Үлгісіз бірегей анимация","Унікальная анімацыя без шаблонаў","独特动画，不使用模板"]}]},
+    {g:["Оформление канала и чата","Оформлення каналу та чату","Channel & chat design","Арна мен чатты безендіру","Афармленне канала і чата","频道与群聊包装"],c:"var(--pink)",items:[
+      {n:["Аватарка","Аватарка","Avatar","Аватар","Аватарка","头像"],p:30},
+      {n:["Анимированная аватарка","Анімована аватарка","Animated avatar","Анимациялық аватар","Анімаваная аватарка","动态头像"],p:60},
+      {n:["Фон","Фон","Background","Фон","Фон","背景"],p:30}]},
+    {g:["Анимация Spine","Анімація Spine","Spine animation","Spine анимациясы","Анімацыя Spine","Spine 动画"],c:"var(--orange)",items:[
+      {n:["Персонажи и объекты для игр","Персонажі та об'єкти для ігор","Characters & objects for games","Ойынға арналған кейіпкерлер мен объектілер","Персанажы і аб'екты для гульняў","游戏角色与物件"],p:50,u:1},
+      {n:["Игровые символы","Ігрові символи","Game symbols","Ойын символдары","Гульнявыя сімвалы","游戏符号"],p:20,u:1}]},
+    {g:["Дополнительно","Додатково","Extras","Қосымша","Дадаткова","附加服务"],c:"var(--mint)",items:[
+      {n:["PSD-файл персонажа для YouTube-модели","PSD-файл персонажа для YouTube-моделі","PSD file of a character for a YouTube model","YouTube-модельге арналған кейіпкердің PSD файлы","PSD-файл персанажа для YouTube-мадэлі","YouTube 虚拟形象角色 PSD 文件"],p:200},
+      {n:["NFT-коллекция","NFT-колекція","NFT collection","NFT-коллекция","NFT-калекцыя","NFT 系列"],p:200,from:1,note:["Цена от $200","Ціна від $200","Price from $200","Баға $200-дан","Цана ад $200","$200 起"]},
+      {n:["Логотип","Логотип","Logo","Логотип","Лагатып","标志设计"],p:50}]}
   ];
 
   /* ===== СТАРТОВЫЕ НАБОРЫ ===== */
   var N={
-    sstk:["Статичные стикеры","Статичні стікери","Static stickers"],
-    semo:["Статичные эмодзи","Статичні емодзі","Static emoji"],
-    ava:["Аватарка","Аватарка","Avatar"],
-    sava:["Статичная аватарка","Статична аватарка","Static avatar"],
-    aava:["Анимированная аватарка","Анімована аватарка","Animated avatar"],
-    bg:["Фон канала","Фон каналу","Channel background"],
-    tsimple:["Упрощённые TGS-стикеры","Спрощені TGS-стікери","Simplified TGS stickers"],
-    tdet:["Детализированные TGS-стикеры","Деталізовані TGS-стікери","Detailed TGS stickers"],
-    temo:["Шаблонные TGS-эмодзи","Шаблонні TGS-емодзі","Template TGS emoji"]
+    sstk:["Статичные стикеры","Статичні стікери","Static stickers","Статикалық стикерлер","Статычныя стыкеры","静态贴纸"],
+    semo:["Статичные эмодзи","Статичні емодзі","Static emoji","Статикалық эмодзилер","Статычныя эмодзі","静态表情"],
+    ava:["Аватарка","Аватарка","Avatar","Аватар","Аватарка","头像"],
+    sava:["Статичная аватарка","Статична аватарка","Static avatar","Статикалық аватар","Статычная аватарка","静态头像"],
+    aava:["Анимированная аватарка","Анімована аватарка","Animated avatar","Анимациялық аватар","Анімаваная аватарка","动态头像"],
+    bg:["Фон канала","Фон каналу","Channel background","Арна фоны","Фон канала","频道背景"],
+    tsimple:["Упрощённые TGS-стикеры","Спрощені TGS-стікери","Simplified TGS stickers","Жеңілдетілген TGS-стикерлер","Спрошчаныя TGS-стыкеры","简化版 TGS 贴纸"],
+    tdet:["Детализированные TGS-стикеры","Деталізовані TGS-стікери","Detailed TGS stickers","Егжей-тегжейлі TGS-стикерлер","Дэталізаваныя TGS-стыкеры","精细版 TGS 贴纸"],
+    temo:["Шаблонные TGS-эмодзи","Шаблонні TGS-емодзі","Template TGS emoji","Үлгілік TGS-эмодзилер","Шаблонныя TGS-эмодзі","模板版 TGS 表情"]
   };
   var PACKS=[
     {n:"Static Start",c:"var(--sky)",i:[["sstk",5],["semo",5]],old:55,p:49},
@@ -596,15 +623,34 @@ footer a:hover{color:var(--paper)}
 
   function $(id){return document.getElementById(id)}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  /* режим диагностики: откройте сайт с ?debug в конце адреса, снизу появится журнал ошибок */
+  var DEBUG=/[?&]debug/.test(location.search),dbgBox=null;
+  function dbg(m){if(!DEBUG)return;if(!dbgBox){dbgBox=document.createElement("pre");dbgBox.style.cssText="position:fixed;left:0;right:0;bottom:0;max-height:40vh;overflow:auto;margin:0;padding:8px;font:11px/1.4 monospace;background:rgba(0,0,0,.85);color:#9f9;z-index:99;white-space:pre-wrap";document.body.appendChild(dbgBox)}dbgBox.textContent+=m+"\n"}
+  window.addEventListener("error",function(e){dbg("ERR "+e.message)});
+  window.addEventListener("unhandledrejection",function(e){dbg("REJ "+(e.reason&&e.reason.message||e.reason))});
+  dbg("UA "+navigator.userAgent);dbg("DecompressionStream: "+typeof DecompressionStream);
 
   /* ===== ВИТРИНА: собирается из works.json (его создаёт scripts/gen-works.js) ===== */
-  var CATS=[["s","tab_s"],["e","tab_e"],["a","tab_a"]];
-  var PH={s:[["#7b5cf0","#ff8fb8"],["#ffa23c","#ff8fb8"],["#7ec3ff","#7b5cf0"]],e:[["#b9a2ff","#7ec3ff"],["#7ec3ff","#ff8fb8"],["#ffa23c","#b9a2ff"]],ec:[["#ff8fb8","#b9a2ff"],["#7b5cf0","#7ec3ff"],["#ffa23c","#ff8fb8"]],el:[["#7ec3ff","#b9a2ff"],["#b9a2ff","#ff8fb8"],["#7b5cf0","#ffa23c"]],a:[["#b9a2ff","#ffa23c"],["#7ec3ff","#7b5cf0"],["#ff8fb8","#7ec3ff"],["#ffa23c","#7b5cf0"],["#b9a2ff","#7ec3ff"]]};
+  var CATS=[
+    ["s","tab_s",[["s","sub_s"],["l","sub_l"],["p","sub_p"]]],
+    ["e","tab_e",[["e","sub_e"],["ec","sub_ec"],["el","sub_el"]]],
+    ["a","tab_a",null]
+  ];
+  var PH={
+    s:[["#7b5cf0","#ff8fb8"],["#ffa23c","#ff8fb8"],["#7ec3ff","#7b5cf0"]],
+    l:[["#ff8fb8","#ffa23c"],["#b9a2ff","#7b5cf0"],["#7ec3ff","#ffa23c"]],
+    p:[["#b9a2ff","#7ec3ff"],["#ffa23c","#b9a2ff"],["#ff8fb8","#7b5cf0"],["#7ec3ff","#ff8fb8"],["#7b5cf0","#ffa23c"]],
+    e:[["#b9a2ff","#7ec3ff"],["#7ec3ff","#ff8fb8"],["#ffa23c","#b9a2ff"]],
+    ec:[["#ff8fb8","#b9a2ff"]],
+    el:[["#7ec3ff","#b9a2ff"],["#b9a2ff","#ff8fb8"],["#7b5cf0","#ffa23c"]],
+    a:[["#b9a2ff","#ffa23c"],["#7ec3ff","#7b5cf0"],["#ff8fb8","#7ec3ff"],["#ffa23c","#7b5cf0"],["#b9a2ff","#7ec3ff"]]
+  };
   /* сколько рамок показывать в каждой вкладке */
-  var SLOTS={s:3,e:3,ec:1,el:3,a:5};
-  var SUBS=[["e","sub_e"],["ec","sub_ec"],["el","sub_el"]];
-  var ALL=[],active="s",sub="e";
-  var rail=$("rail"),count=$("count"),filters=$("filters"),subf=$("subfilters");
+  var SLOTS={s:3,l:3,p:5,e:3,ec:1,el:3,a:5};
+  /* аватары с этого номера подписываются как «аватарка профиля», остальные как «для канала или чата» */
+  var AVATAR_PROFILE_FROM=3;
+  var ALL=[],active="s",subSel={s:"s",e:"e"};
+  var rail=$("rail"),filters=$("filters"),subf=$("subfilters");
   function isLot(x){return /\.(tgs|json)(\?|$)/i.test(x||"")}
   function isVideo(x){return /\.(mp4|webm)(\?|$)/i.test(x||"")}
   function art(c,i){
@@ -614,29 +660,50 @@ footer a:hover{color:var(--paper)}
       '<circle cx="'+(60+r*2)+'" cy="70" r="6" fill="#fff"/><circle cx="330" cy="60" r="3" fill="#cfe8ff"/></svg>';
   }
   /* --- TGS через lottie-web --- */
-  var lottieP=null;
+  var RENDERER=/[?&]r=canvas/.test(location.search)?"canvas":"svg";
+  function loadScript(src){
+    return new Promise(function(res,rej){var sc=document.createElement("script");sc.src=src;sc.onload=res;sc.onerror=function(){rej(new Error("script "+src))};document.head.appendChild(sc)});
+  }
+  var lottieP=null,pakoP=null;
   function loadLottie(){
     if(window.lottie)return Promise.resolve();
-    if(lottieP)return lottieP;
-    lottieP=new Promise(function(res,rej){var sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js";sc.onload=res;sc.onerror=rej;document.head.appendChild(sc)});
-    return lottieP;
+    return lottieP||(lottieP=loadScript("https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"));
   }
+  function loadPako(){
+    if(window.pako)return Promise.resolve();
+    return pakoP||(pakoP=loadScript("https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"));
+  }
+  /* TGS = gzip + JSON. Если браузер не умеет gzip сам (старые телефоны), используем pako */
+  function viaPako(u){return loadPako().then(function(){return pako.inflate(u,{to:"string"})})}
   function gunzip(buf){
     var u=new Uint8Array(buf);
     if(u[0]!==0x1f||u[1]!==0x8b)return Promise.resolve(new TextDecoder().decode(u));
-    return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+    try{
+      if(typeof DecompressionStream==="function"&&typeof Response==="function"&&typeof Blob==="function"&&Blob.prototype.stream){
+        return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text().catch(function(){return viaPako(u)});
+      }
+    }catch(e){}
+    return viaPako(u);
   }
   var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){
     es.forEach(function(e){var a=e.target._anim;if(!a)return;e.isIntersecting?a.play():a.pause()});
   },{threshold:.2}):null;
   function mountLot(el,fallbackColors,i){
-    Promise.all([loadLottie(),fetch(el.dataset.src).then(function(r){if(!r.ok)throw new Error("404");return r.arrayBuffer()}).then(gunzip)]).then(function(a){
-      var anim=lottie.loadAnimation({container:el,renderer:"svg",loop:true,autoplay:false,animationData:JSON.parse(a[1])});
+    Promise.all([loadLottie(),fetch(el.dataset.src).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.arrayBuffer()}).then(gunzip)]).then(function(a){
+      var anim=lottie.loadAnimation({container:el,renderer:RENDERER,loop:true,autoplay:false,animationData:JSON.parse(a[1])});
       el._anim=anim;
       if(io)io.observe(el);else anim.play();
-    }).catch(function(){el.innerHTML=art(fallbackColors,i)});
+      dbg("TGS ok "+el.dataset.src+" ("+RENDERER+")");
+    }).catch(function(err){dbg("TGS fail "+el.dataset.src+": "+(err&&err.message||err));el.innerHTML=art(fallbackColors,i)});
   }
-  function curKey(){return active==="e"?sub:active}
+  function group(){return CATS.filter(function(c){return c[0]===active})[0]}
+  function curKey(){return group()[2]?subSel[active]:active}
+  function baseOf(key){return key==="a"?"a":(key==="e"||key==="ec"||key==="el")?"e":"s"}
+  function subtitle(key,n){
+    if(key==="p")return t("sub_p")+", PNG";
+    if(key==="a")return n>=AVATAR_PROFILE_FROM?t("sub_ap"):t("sub_a");
+    return t("sub_"+key)+", TGS";
+  }
   function renderTabs(){
     filters.innerHTML="";
     CATS.forEach(function(c){
@@ -644,45 +711,41 @@ footer a:hover{color:var(--paper)}
       b.onclick=function(){active=c[0];renderTabs();renderWorks()};
       filters.appendChild(b);
     });
-    subf.innerHTML="";subf.hidden=active!=="e";
-    if(active==="e")SUBS.forEach(function(c){
-      var b=document.createElement("button");b.type="button";b.textContent=t(c[1]);b.setAttribute("aria-pressed",c[0]===sub);
-      b.onclick=function(){sub=c[0];renderTabs();renderWorks()};
+    var g=group();subf.innerHTML="";subf.hidden=!g[2];
+    if(g[2])g[2].forEach(function(c){
+      var b=document.createElement("button");b.type="button";b.textContent=t(c[1]);b.setAttribute("aria-pressed",c[0]===subSel[active]);
+      b.onclick=function(){subSel[active]=c[0];renderTabs();renderWorks()};
       subf.appendChild(b);
     });
   }
   function renderWorks(){
     rail.innerHTML="";
-    var key=curKey(),base=key==="a"?"a":key==="s"?"s":"e";
+    var key=curKey(),base=baseOf(key);
     var real=ALL.filter(function(w){return w.c===key});
     var list=[],max=SLOTS[key];
     real.forEach(function(w){if(w.n>max)max=w.n});
-    for(var n=1;n<=Math.max(max,SLOTS[key]);n++){
+    for(var n=1;n<=max;n++){
       var f=real.filter(function(w){return w.n===n})[0];
       if(f)list.push(f);else if(n<=SLOTS[key])list.push({c:key,n:n,ph:PH[key][(n-1)%PH[key].length]});
     }
     list.forEach(function(w,i){
-      var isReal=!w.ph;
+      var isReal=!w.ph,colors=PH[key][i%PH[key].length];
       var title=w.name||(t("w_"+base)+" "+w.n);
-      var sub2=isReal?(key==="s"||key==="a"?t("sub_"+key):t("sub_"+key)+", TGS"):t("soon");
+      var sub2=isReal?subtitle(key,w.n):t("soon");
       var inner;
       if(!isReal)inner=art(w.ph,i);
       else if(isLot(w.src))inner='<div class="lot" data-src="'+esc(w.src)+'" role="img" aria-label="'+esc(title)+'"></div>';
       else if(isVideo(w.src))inner='<video src="'+esc(w.src)+'" autoplay muted loop playsinline></video>';
-      else inner='<img src="'+esc(w.src)+'" alt="'+esc(title)+'" loading="lazy">';
+      else inner='<img src="'+esc(w.src)+'" alt="'+esc(title)+'" decoding="async">';
       var el=document.createElement("article");el.className="work"+(isReal?"":" empty");
-      el.innerHTML='<div class="cover">'+inner+'</div><h3>'+esc(title)+'</h3><p>'+esc(sub2)+'</p>';
+      el.innerHTML='<div class="cover'+(key==="p"?" stk":"")+'">'+inner+'</div><h3>'+esc(title)+'</h3><p>'+esc(sub2)+'</p>';
       rail.appendChild(el);
-      var lt=el.querySelector(".lot");if(lt)mountLot(lt,PH[key][i%PH[key].length],i);
+      var lt=el.querySelector(".lot");if(lt)mountLot(lt,colors,i);
+      var im=el.querySelector("img");
+      if(im)im.onerror=function(){dbg("IMG fail "+w.src);var d=document.createElement("div");d.innerHTML=art(colors,i);im.parentNode.replaceChild(d.firstChild,im)};
     });
-    rail.scrollLeft=0;upd();
+    rail.scrollLeft=0;
   }
-  function pad(n){return (n<10?"0":"")+n}
-  function step(){var f=rail.querySelector(".work");return f?f.getBoundingClientRect().width+18:300}
-  function upd(){var n=rail.children.length;if(!n){count.textContent="";return}var i=Math.min(Math.round(rail.scrollLeft/step())+1,n);count.textContent=pad(i)+" / "+pad(n)}
-  $("prev").onclick=function(){rail.scrollBy({left:-step(),behavior:"smooth"})};
-  $("next").onclick=function(){rail.scrollBy({left:step(),behavior:"smooth"})};
-  rail.addEventListener("scroll",upd,{passive:true});
 
   /* ===== наборы: свернуть / развернуть ===== */
   var tog=$("packtoggle"),body=$("packbody"),ptl=$("ptlabel");
@@ -765,25 +828,37 @@ footer a:hover{color:var(--paper)}
   };
 
   /* ===== язык ===== */
+  var langbtn=$("langbtn"),langmenu=$("langmenu"),langcur=$("langcur");
+  LANGS.forEach(function(code){
+    var li=document.createElement("li");li.setAttribute("role","none");
+    li.innerHTML='<button type="button" role="option" data-lang="'+code+'" aria-selected="false"><span>'+NAMES[code]+'</span></button>';
+    langmenu.appendChild(li);
+  });
   function applyStatic(){
     [].forEach.call(document.querySelectorAll("[data-i]"),function(e){e.textContent=t(e.getAttribute("data-i"))});
     [].forEach.call(document.querySelectorAll("[data-ph]"),function(e){e.setAttribute("placeholder",t(e.getAttribute("data-ph")))});
   }
-  function setLang(i,save){
-    LI=i;document.documentElement.lang=LANGS[i];
-    if(save){try{localStorage.setItem("axo-lang",LANGS[i])}catch(e){}}
-    [].forEach.call(document.querySelectorAll(".lang button"),function(b){b.setAttribute("aria-pressed",b.dataset.lang===LANGS[i])});
+  function setLang(code,save){
+    if(!(code in IDX))code="en";
+    LANG=code;LI=IDX[code];document.documentElement.lang=code;
+    if(save){try{localStorage.setItem("axo-lang2",code)}catch(e){}}
+    langcur.textContent=SHORT[code];
+    [].forEach.call(langmenu.querySelectorAll("button"),function(b){b.setAttribute("aria-selected",b.dataset.lang===code)});
     applyStatic();renderTabs();renderWorks();renderPacks();renderPrices();ptLabel();compute();
   }
-  [].forEach.call(document.querySelectorAll(".lang button"),function(b){b.onclick=function(){setLang(LANGS.indexOf(b.dataset.lang),true)}});
+  function menu(open){langmenu.hidden=!open;langbtn.setAttribute("aria-expanded",open)}
+  langbtn.onclick=function(e){e.stopPropagation();menu(langmenu.hidden)};
+  langmenu.onclick=function(e){var b=e.target.closest("button[data-lang]");if(!b)return;setLang(b.dataset.lang,true);menu(false)};
+  document.addEventListener("click",function(){menu(false)});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")menu(false)});
+  /* сайт всегда открывается на английском, дальше запоминается выбор посетителя */
   function initialLang(){
-    try{var s=localStorage.getItem("axo-lang");if(s&&LANGS.indexOf(s)>=0)return LANGS.indexOf(s)}catch(e){}
-    var n=(navigator.language||"ru").toLowerCase();
-    return n.indexOf("uk")===0?1:n.indexOf("ru")===0?0:2;
+    try{var s=localStorage.getItem("axo-lang2");if(s&&(s in IDX))return s}catch(e){}
+    return "en";
   }
   setLang(initialLang(),false);
-  fetch("works.json",{cache:"no-cache"}).then(function(r){return r.ok?r.json():[]}).catch(function(){return[]}).then(function(a){
-    ALL=Array.isArray(a)?a:[];renderWorks();
+  fetch("works.json",{cache:"no-cache"}).then(function(r){dbg("works.json HTTP "+r.status);return r.ok?r.json():[]}).catch(function(e){dbg("works.json fail "+e);return[]}).then(function(a){
+    ALL=Array.isArray(a)?a:[];dbg("works: "+ALL.length);renderWorks();
   });
 
   /* ===== hero: лепестки-жабры аксолотля и звёзды ===== */
@@ -796,6 +871,7 @@ footer a:hover{color:var(--paper)}
     var n=Math.round(Math.min(110,W*H/11000));P=[];S=[];
     for(var i=0;i<n;i++){var c=petalCols[i%petalCols.length];
       P.push({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,r:7+Math.random()*13,a:Math.random()*6.28,s:(Math.random()-.5)*.02,c:c,ph:Math.random()*6.28,al:.55+Math.random()*.4})}
+    P.forEach(function(p){var g=ctx.createLinearGradient(-p.r,0,p.r,0);g.addColorStop(0,p.c[0]);g.addColorStop(1,p.c[1]);p.g=g});
     for(var j=0;j<Math.round(n/2);j++)S.push({x:Math.random()*W,y:Math.random()*H,r:2+Math.random()*4,ph:Math.random()*6.28});
   }
   function petal(r){
@@ -822,12 +898,17 @@ footer a:hover{color:var(--paper)}
         if(p.x>W+30)p.x=-30;if(p.x<-30)p.x=W+30;
       }
       ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);ctx.globalAlpha=p.al;
-      var g=ctx.createLinearGradient(-p.r,0,p.r,0);g.addColorStop(0,p.c[0]);g.addColorStop(1,p.c[1]);
-      petal(p.r);ctx.fillStyle=g;ctx.fill();
+      petal(p.r);ctx.fillStyle=p.g;ctx.fill();
       ctx.lineWidth=1.2;ctx.strokeStyle="rgba(255,255,255,.55)";ctx.stroke();ctx.restore();
     }
-    if(!reduce)requestAnimationFrame(draw);
+    if(!reduce&&heroVis)requestAnimationFrame(draw);else looping=false;
   }
+  /* когда первый экран не виден, анимацию лепестков ставим на паузу, чтобы не мешать TGS */
+  var heroVis=true,looping=true;
+  if("IntersectionObserver" in window)new IntersectionObserver(function(es){
+    heroVis=es[0].isIntersecting;
+    if(heroVis&&!looping&&!reduce){looping=true;requestAnimationFrame(draw)}
+  }).observe($("top"));
   size();requestAnimationFrame(draw);
   addEventListener("resize",function(){size();if(reduce)draw(0)});
   var hero=$("top");
