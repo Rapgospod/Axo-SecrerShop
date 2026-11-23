@@ -120,6 +120,8 @@ section{padding-block:clamp(48px,7vw,96px)}
 .cover{aspect-ratio:1/1;border-radius:24px;position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s;background:var(--ink-2);border:1px solid var(--line)}
 .work.wide .cover{aspect-ratio:16/10}
 .work:hover .cover{transform:translateY(-6px);box-shadow:0 18px 40px -16px rgba(123,92,240,.7)}
+.lot{position:absolute;inset:0;padding:8%;background:radial-gradient(circle at 50% 40%,rgba(123,92,240,.28),transparent 70%)}
+.lot svg{width:100%!important;height:100%!important;display:block}
 .cover svg,.cover img,.cover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .work h3{font-size:19px;margin:14px 0 4px}
 .work p{margin:0;color:var(--muted);font-size:14px;font-weight:600}
@@ -253,6 +255,18 @@ footer a:hover{color:var(--paper)}
   .item .qty{grid-column:1/-1;justify-self:start}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+.navr{display:flex;align-items:center;gap:12px}
+.lang{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:2px;background:rgba(255,255,255,.04)}
+.lang button{font:800 12px var(--font);letter-spacing:.04em;padding:6px 10px;border-radius:999px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.lang button:hover{color:var(--paper)}
+.lang button[aria-pressed="true"]{background:var(--grad);color:#fff}
+@media (max-width:900px){.navr .btn{display:none}}
+.filters.sub{margin:-8px 0 22px}
+.filters.sub button{font-size:12px;padding:6px 14px;background:transparent}
+.filters.sub button[aria-pressed="true"]{background:rgba(185,162,255,.2);color:var(--paper);border-color:var(--lilac)}
+.filters[hidden]{display:none}
+.work.empty .cover{border-style:dashed;border-color:rgba(185,162,255,.4)}
+.work.empty h3{color:#cfc8ee}
 </style>
 </head>
 <body>
@@ -260,13 +274,20 @@ footer a:hover{color:var(--paper)}
   <nav class="nav">
     <a class="logo" href="#top">Axo SecretShop</a>
     <ul>
-      <li><a href="#works">Работы</a></li>
-      <li><a href="#packs">Наборы</a></li>
-      <li><a href="#order">Цены и заказ</a></li>
-      <li><a href="#process">Как работаем</a></li>
-      <li><a href="#faq">Вопросы</a></li>
+      <li><a href="#works" data-i="nav_works">Работы</a></li>
+      <li><a href="#packs" data-i="nav_packs">Наборы</a></li>
+      <li><a href="#order" data-i="nav_order">Цены и заказ</a></li>
+      <li><a href="#process" data-i="nav_process">Как работаем</a></li>
+      <li><a href="#faq" data-i="nav_faq">Вопросы</a></li>
     </ul>
-    <a class="btn" href="#order">Заказать</a>
+    <div class="navr">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+        <button type="button" data-lang="uk" aria-pressed="false">UA</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn" href="#order" data-i="nav_cta">Заказать</a>
+    </div>
   </nav>
 </div>
 
@@ -274,18 +295,18 @@ footer a:hover{color:var(--paper)}
   <canvas id="field" aria-hidden="true"></canvas>
   <div class="wrap hero-in">
     <div class="eyebrow">Illustration · Design · Motion</div>
-    <h1><span class="pre">сделано в</span><span class="name">Axo SecretShop</span></h1>
-    <p class="lead">Анимированные стикеры и эмодзи для Telegram, оформление каналов, анимация Spine для игр, персонажи и логотипы. Выберите услуги, посчитайте заказ и отправьте менеджеру в пару кликов.</p>
+    <h1><span class="pre" data-i="hero_pre">сделано в</span><span class="name">Axo SecretShop</span></h1>
+    <p class="lead" data-i="hero_lead">Анимированные стикеры и эмодзи для Telegram, оформление каналов, анимация Spine для игр, персонажи и логотипы. Выберите услуги, посчитайте заказ и отправьте менеджеру в пару кликов.</p>
     <div class="row">
-      <a class="btn big" href="#order">Рассчитать заказ</a>
-      <a class="btn big ghost" href="https://t.me/axoportfolio" target="_blank" rel="noopener">Портфолио в Telegram</a>
+      <a class="btn big" href="#order" data-i="hero_calc">Рассчитать заказ</a>
+      <a class="btn big ghost" href="https://t.me/axoportfolio" target="_blank" rel="noopener" data-i="hero_portfolio">Портфолио в Telegram</a>
     </div>
     <ul class="chips">
-      <li><a href="#packs" data-openpacks><span class="hot"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 2c.3 3-1.2 4.6-2.6 6.2C9.600 9.700 8 11.300 8 14a4 4 0 0 0 8 0c0-1-.3-1.900-.8-2.700 2.300 1.200 3.800 3.500 3.800 6A7 7 0 0 1 5 17.500C5 13 8.500 11 10 8c.9-1.800 1-3.800 3.500-6z"/></svg>HOT</span>Стартовые наборы со скидкой</a></li>
-      <li>Стикеры PNG и TGS</li>
-      <li>Эмодзи шаблонные и кастомные</li>
-      <li>Spine для игр</li>
-      <li>Срочные заказы</li>
+      <li><a href="#packs"><span class="hot"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 2c.3 3-1.2 4.6-2.6 6.2C9.6 9.7 8 11.3 8 14a4 4 0 0 0 8 0c0-1-.3-1.9-.8-2.7 2.3 1.2 3.8 3.5 3.8 6A7 7 0 0 1 5 17.5C5 13 8.5 11 10 8c.9-1.8 1-3.8 3.5-6z"/></svg>HOT</span><span data-i="chip_packs">Стартовые наборы со скидкой</span></a></li>
+      <li data-i="chip_1">Стикеры PNG и TGS</li>
+      <li data-i="chip_2">Эмодзи шаблонные и кастомные</li>
+      <li data-i="chip_3">Spine для игр</li>
+      <li data-i="chip_4">Срочные заказы</li>
     </ul>
   </div>
 </header>
@@ -293,30 +314,31 @@ footer a:hover{color:var(--paper)}
 <main class="wrap">
   <section id="works">
     <div class="head">
-      <h2>Работы</h2>
-      <p>Выберите направление и листайте. Больше примеров в нашем канале.</p>
+      <h2 data-i="works_h">Работы</h2>
+      <p data-i="works_p">Выберите направление и листайте. Больше примеров в нашем канале.</p>
     </div>
-    <div class="filters" id="filters" role="group" aria-label="Категории"></div>
-    <div class="rail" id="rail" tabindex="0" aria-label="Проекты"></div>
+    <div class="filters" id="filters" role="group" aria-label="Categories"></div>
+    <div class="filters sub" id="subfilters" role="group" aria-label="Emoji types" hidden></div>
+    <div class="rail" id="rail" tabindex="0" aria-label="Works"></div>
     <div class="ctrl">
-      <button id="prev" aria-label="Назад">←</button>
-      <button id="next" aria-label="Вперёд">→</button>
+      <button id="prev" aria-label="Previous">←</button>
+      <button id="next" aria-label="Next">→</button>
       <span id="count"></span>
-      <a class="btn ghost more" href="https://t.me/axoportfolio" target="_blank" rel="noopener">Всё портфолио в Telegram</a>
+      <a class="btn ghost more" href="https://t.me/axoportfolio" target="_blank" rel="noopener" data-i="works_all_tg">Всё портфолио в Telegram</a>
     </div>
   </section>
 
   <section id="packs">
     <button class="packtoggle" id="packtoggle" type="button" aria-expanded="false" aria-controls="packbody">
-      <span class="hot"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.500 2c.3 3-1.200 4.600-2.600 6.200C9.600 9.700 8 11.300 8 14a4 4 0 0 0 8 0c0-1-.3-1.900-.8-2.700 2.300 1.200 3.800 3.500 3.800 6A7 7 0 0 1 5 17.500C5 13 8.500 11 10 8c.9-1.800 1-3.800 3.500-6z"/></svg>HOT</span>
-      <span class="pt-main"><b>Стартовые наборы</b><small>6 готовых пакетов со скидкой, экономия до $65</small></span>
-      <span class="pt-cta"><span id="ptlabel">Смотреть наборы</span><i class="chev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span>
+      <span class="hot"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 2c.3 3-1.2 4.6-2.6 6.2C9.6 9.7 8 11.3 8 14a4 4 0 0 0 8 0c0-1-.3-1.9-.8-2.7 2.3 1.2 3.8 3.5 3.8 6A7 7 0 0 1 5 17.5C5 13 8.5 11 10 8c.9-1.8 1-3.8 3.5-6z"/></svg>HOT</span>
+      <span class="pt-main"><b data-i="packs_h">Стартовые наборы</b><small data-i="packs_sub">6 готовых пакетов со скидкой, экономия до $65</small></span>
+      <span class="pt-cta"><span id="ptlabel">Смотреть наборы</span><i class="chev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span>
     </button>
     <div class="packbody" id="packbody">
       <div class="inner">
         <div class="packs" id="packgrid"></div>
         <div class="packgo">
-          <span>Скидка для новых клиентов уже включена. Дополнительные услуги оплачиваются отдельно, индивидуальные пожелания обсуждаются отдельно.</span>
+          <span data-i="packs_note">Скидка для новых клиентов уже включена. Дополнительные услуги оплачиваются отдельно, индивидуальные пожелания обсуждаются отдельно.</span>
           <a class="btn" href="#order" id="packgo">Перейти к заказу</a>
         </div>
       </div>
@@ -325,62 +347,62 @@ footer a:hover{color:var(--paper)}
 
   <section id="order">
     <div class="head">
-      <h2>Цены и заказ</h2>
-      <p>Выбранные наборы и отдельные услуги собираются в одну смету справа, вместе с готовым сообщением менеджеру.</p>
+      <h2 data-i="order_h">Цены и заказ</h2>
+      <p data-i="order_p">Выбранные наборы и отдельные услуги собираются в одну смету вместе с готовым сообщением менеджеру.</p>
     </div>
     <div class="order">
       <div>
         <div class="groups" id="groups"></div>
         <div class="terms">
-          <div><b>Срочно: ×2</b><span>Выполнение в кратчайшие сроки, стоимость умножается на два.</span></div>
-          <div><b>Нет в прайсе?</b><span>Всё, что не указано выше, обсуждаем индивидуально. Цена договорная.</span></div>
+          <div><b data-i="terms1_b">Срочно: ×2</b><span data-i="terms1_s">Выполнение в кратчайшие сроки, стоимость умножается на два.</span></div>
+          <div><b data-i="terms2_b">Нет в прайсе?</b><span data-i="terms2_s">Всё, что не указано выше, обсуждаем индивидуально. Цена договорная.</span></div>
         </div>
       </div>
       <aside class="sum" aria-live="polite">
-        <h3>Ваш заказ</h3>
+        <h3 data-i="sum_h">Ваш заказ</h3>
         <ul class="lines" id="lines"><li><span>Пока ничего не выбрано</span></li></ul>
-        <label class="chk"><input type="checkbox" id="rush"><span>Срочно, цена ×2</span></label>
-        <textarea id="brief" placeholder="Коротко опишите задачу: что нужно, референсы, сроки"></textarea>
-        <div class="total"><span>Итого</span><b id="total">$0</b></div>
-        <a class="btn big" id="send" href="https://t.me/Rapgospod" target="_blank" rel="noopener">Отправить менеджеру</a>
-        <button class="btn ghost" id="copy" type="button">Скопировать сообщение</button>
-        <p class="hint">Откроется Telegram с готовым текстом. Цену окончательно подтверждает менеджер.</p>
+        <label class="chk"><input type="checkbox" id="rush"><span data-i="sum_rush">Срочно, цена ×2</span></label>
+        <textarea id="brief" data-ph="sum_ph" placeholder="Коротко опишите задачу: что нужно, референсы, сроки"></textarea>
+        <div class="total"><span data-i="sum_total">Итого</span><b id="total">$0</b></div>
+        <a class="btn big" id="send" href="https://t.me/Rapgospod" target="_blank" rel="noopener" data-i="sum_send">Отправить менеджеру</a>
+        <button class="btn ghost" id="copy" type="button" data-i="sum_copy">Скопировать сообщение</button>
+        <p class="hint" data-i="sum_hint">Откроется Telegram с готовым текстом. Цену окончательно подтверждает менеджер.</p>
       </aside>
     </div>
   </section>
 
   <section id="process">
     <div class="head">
-      <h2>Как работаем</h2>
-      <p>Четыре шага. Вы всегда знаете, что дальше.</p>
+      <h2 data-i="process_h">Как работаем</h2>
+      <p data-i="process_p">Четыре шага. Вы всегда знаете, что дальше.</p>
     </div>
     <ol class="steps">
-      <li><h3>Заявка</h3><p>Собираете заказ здесь или пишете менеджеру напрямую.</p></li>
-      <li><h3>Смета и сроки</h3><p>Менеджер подтверждает цену, сроки и условия оплаты.</p></li>
-      <li><h3>Работа</h3><p>Художница рисует и анимирует, промежуточный результат вы видите по ходу.</p></li>
-      <li><h3>Сдача</h3><p>Получаете готовые файлы в нужных форматах.</p></li>
+      <li><h3 data-i="st1_h">Заявка</h3><p data-i="st1_p">Собираете заказ здесь или пишете менеджеру напрямую.</p></li>
+      <li><h3 data-i="st2_h">Смета и сроки</h3><p data-i="st2_p">Менеджер подтверждает цену, сроки и условия оплаты.</p></li>
+      <li><h3 data-i="st3_h">Работа</h3><p data-i="st3_p">Художница рисует и анимирует, промежуточный результат вы видите по ходу.</p></li>
+      <li><h3 data-i="st4_h">Сдача</h3><p data-i="st4_p">Получаете готовые файлы в нужных форматах.</p></li>
     </ol>
   </section>
 
   <section id="team">
     <div class="head">
-      <h2>Кто с вами работает</h2>
-      <p>Вы общаетесь с менеджером, а делает художница.</p>
+      <h2 data-i="team_h">Кто с вами работает</h2>
+      <p data-i="team_p">Вы общаетесь с менеджером, а делает художница.</p>
     </div>
     <div class="team">
       <div class="person">
-        <div class="dot"><img src="works/manager.webp" alt="Аватарка менеджера"></div>
+        <div class="dot"><img src="works/manager.webp" alt=""></div>
         <div>
-          <h3>Менеджер</h3><div class="role">Заказы, сроки, оплата</div>
-          <p>Принимает заявки, считает смету, держит связь и следит, чтобы всё сдавалось вовремя.</p>
+          <h3 data-i="mgr_h">Менеджер</h3><div class="role" data-i="mgr_role">Заказы, сроки, оплата</div>
+          <p data-i="mgr_p">Принимает заявки, считает смету, держит связь и следит, чтобы всё сдавалось вовремя.</p>
           <a class="btn" href="https://t.me/Rapgospod" target="_blank" rel="noopener">@Rapgospod</a>
         </div>
       </div>
       <div class="person">
-        <div class="dot"><img src="works/artist.webp" alt="Аватарка художницы"></div>
+        <div class="dot"><img src="works/artist.webp" alt=""></div>
         <div>
-          <h3>Художница</h3><div class="role">Рисунок и анимация</div>
-          <p>Рисует стикеры, эмодзи и персонажей, делает анимацию TGS и Spine.</p>
+          <h3 data-i="art_h">Художница</h3><div class="role" data-i="art_role">Рисунок и анимация</div>
+          <p data-i="art_p">Рисует стикеры, эмодзи и персонажей, делает анимацию TGS и Spine.</p>
           <a class="btn ghost" href="https://t.me/DarkRim27" target="_blank" rel="noopener">@DarkRim27</a>
         </div>
       </div>
@@ -388,22 +410,22 @@ footer a:hover{color:var(--paper)}
   </section>
 
   <section id="faq">
-    <div class="head"><h2>Вопросы</h2></div>
+    <div class="head"><h2 data-i="faq_h">Вопросы</h2></div>
     <div class="faq">
-      <details><summary>Как сделать заказ?</summary><p>Выберите услуги в блоке «Цены и заказ», нажмите «Отправить менеджеру». Откроется Telegram с готовым сообщением. Либо напишите @Rapgospod своими словами.</p></details>
-      <details><summary>Чем отличаются шаблонные и кастомные эмодзи?</summary><p>Шаблонные делаются на основе готовых шаблонов анимации. Кастомные берут шаблон за основу и дорабатываются под вас. Полностью кастомные получают уникальную анимацию с нуля.</p></details>
-      <details><summary>Что значит «срочно»?</summary><p>Заказ выполняется в кратчайшие сроки, а стоимость умножается на два.</p></details>
-      <details><summary>Можно заказать то, чего нет в прайсе?</summary><p>Да. Напишите менеджеру, что нужно. Цена в таком случае договорная.</p></details>
-      <details><summary>Где посмотреть больше работ?</summary><p>В нашем портфолио в Telegram: t.me/axoportfolio.</p></details>
+      <details><summary data-i="faq1_q">Как сделать заказ?</summary><p data-i="faq1_a">Выберите услуги в блоке «Цены и заказ», нажмите «Отправить менеджеру». Откроется Telegram с готовым сообщением. Либо напишите @Rapgospod своими словами.</p></details>
+      <details><summary data-i="faq2_q">Чем отличаются шаблонные и кастомные эмодзи?</summary><p data-i="faq2_a">Шаблонные делаются на основе готовых шаблонов анимации. Кастомные берут шаблон за основу и дорабатываются под вас. Полностью кастомные получают уникальную анимацию с нуля.</p></details>
+      <details><summary data-i="faq3_q">Что значит «срочно»?</summary><p data-i="faq3_a">Заказ выполняется в кратчайшие сроки, а стоимость умножается на два.</p></details>
+      <details><summary data-i="faq4_q">Можно заказать то, чего нет в прайсе?</summary><p data-i="faq4_a">Да. Напишите менеджеру, что нужно. Цена в таком случае договорная.</p></details>
+      <details><summary data-i="faq5_q">Где посмотреть больше работ?</summary><p data-i="faq5_a">В нашем портфолио в Telegram: t.me/axoportfolio.</p></details>
     </div>
   </section>
 
   <section class="cta">
-    <h2>есть проект?</h2>
-    <p>Напишите менеджеру, что хотите сделать, и он сразу назовёт цену и сроки.</p>
+    <h2 data-i="cta_h">есть проект?</h2>
+    <p data-i="cta_p">Напишите менеджеру, что хотите сделать, и он сразу назовёт цену и сроки.</p>
     <div class="row">
-      <a class="btn big" href="https://t.me/Rapgospod" target="_blank" rel="noopener">Написать @Rapgospod</a>
-      <a class="btn big ghost" href="https://t.me/axoportfolio" target="_blank" rel="noopener">Портфолио</a>
+      <a class="btn big" href="https://t.me/Rapgospod" target="_blank" rel="noopener" data-i="cta_write">Написать @Rapgospod</a>
+      <a class="btn big ghost" href="https://t.me/axoportfolio" target="_blank" rel="noopener" data-i="cta_port">Портфолио</a>
     </div>
   </section>
 
@@ -414,165 +436,322 @@ footer a:hover{color:var(--paper)}
 </main>
 
 <div class="bar">
-  <a class="btn ghost" href="#order">Заказ</a>
-  <a class="btn" href="https://t.me/Rapgospod" target="_blank" rel="noopener">Написать в Telegram</a>
+  <a class="btn ghost" href="#order" data-i="bar_order">Заказ</a>
+  <a class="btn" href="https://t.me/Rapgospod" target="_blank" rel="noopener" data-i="bar_tg">Написать в Telegram</a>
 </div>
 
 <script>
 (function(){
-  /* ============ НАСТРОЙКИ ============ */
-  var MANAGER = "Rapgospod";
+  var MANAGER="Rapgospod";
+  var LANGS=["ru","uk","en"],LI=0;
 
-  /* Витрина работ. Файлы кладём в папку works/ рядом с index.html.
-     src: "works/01.webp" (png, jpg, webp, gif) или "works/02.mp4" (mp4, webm). Если src пустой, показывается заглушка.
-     wide:true делает карточку широкой (для баннеров). */
-  var WORKS = [
-    {t:"Набор эмодзи",         d:"Кастомные, TGS",         cat:"Эмодзи",   src:"", c:["#b9a2ff","#7ec3ff"]},
-    {t:"Анимация Spine",        d:"Персонаж для игры",      cat:"Spine",    src:"", c:["#7b5cf0","#ff8fb8"]},
-    {t:"Персонаж для YouTube",  d:"PSD-модель",             cat:"Персонажи",src:"", c:["#ffa23c","#ff8fb8"]}
+  /* ===== ТЕКСТЫ: [русский, украинский, английский] ===== */
+  var D={
+    nav_works:["Работы","Роботи","Works"],
+    nav_packs:["Наборы","Набори","Packs"],
+    nav_order:["Цены и заказ","Ціни та замовлення","Prices & order"],
+    nav_process:["Как работаем","Як працюємо","How we work"],
+    nav_faq:["Вопросы","Питання","FAQ"],
+    nav_cta:["Заказать","Замовити","Order"],
+    hero_pre:["сделано в","зроблено в","made in"],
+    hero_lead:["Анимированные стикеры и эмодзи для Telegram, оформление каналов, анимация Spine для игр, персонажи и логотипы. Выберите услуги, посчитайте заказ и отправьте менеджеру в пару кликов.","Анімовані стікери та емодзі для Telegram, оформлення каналів, анімація Spine для ігор, персонажі та логотипи. Оберіть послуги, порахуйте замовлення й надішліть менеджеру в пару кліків.","Animated stickers and emoji for Telegram, channel design, Spine animation for games, characters and logos. Pick your services, calculate the order and send it to the manager in a couple of clicks."],
+    hero_calc:["Рассчитать заказ","Розрахувати замовлення","Calculate order"],
+    hero_portfolio:["Портфолио в Telegram","Портфоліо в Telegram","Portfolio on Telegram"],
+    chip_packs:["Стартовые наборы со скидкой","Стартові набори зі знижкою","Starter packs with a discount"],
+    chip_1:["Стикеры PNG и TGS","Стікери PNG і TGS","PNG and TGS stickers"],
+    chip_2:["Эмодзи шаблонные и кастомные","Емодзі шаблонні та кастомні","Template and custom emoji"],
+    chip_3:["Spine для игр","Spine для ігор","Spine for games"],
+    chip_4:["Срочные заказы","Термінові замовлення","Rush orders"],
+    works_h:["Работы","Роботи","Works"],
+    works_p:["Выберите направление и листайте. Больше примеров в нашем канале.","Оберіть напрямок і гортайте. Більше прикладів у нашому каналі.","Pick a category and swipe. More examples in our channel."],
+    works_all_tg:["Всё портфолио в Telegram","Усе портфоліо в Telegram","Full portfolio on Telegram"],
+    tab_s:["Наборы стикеров","Набори стікерів","Sticker packs"],
+    tab_e:["Наборы эмодзи","Набори емодзі","Emoji packs"],
+    tab_a:["Аватары","Аватари","Avatars"],
+    w_s:["Стикер","Стікер","Sticker"],
+    w_e:["Эмодзи","Емодзі","Emoji"],
+    w_a:["Аватар","Аватар","Avatar"],
+    sub_ec:["Кастомные (на шаблоне)","Кастомні (на шаблоні)","Custom (template-based)"],
+    sub_el:["Шаблонные","Шаблонні","Template"],
+    sub_e:["Полностью кастомные","Повністю кастомні","Fully custom"],
+    sub_s:["Анимированный стикер, TGS","Анімований стікер, TGS","Animated sticker, TGS"],
+    sub_a:["Аватарка для канала или чата","Аватарка для каналу чи чату","Avatar for a channel or chat"],
+    soon:["Скоро добавим","Незабаром додамо","Coming soon"],
+    packs_h:["Стартовые наборы","Стартові набори","Starter packs"],
+    packs_sub:["6 готовых пакетов со скидкой, экономия до $65","6 готових пакетів зі знижкою, економія до $65","6 ready-made packs at a discount, save up to $65"],
+    packs_open:["Смотреть наборы","Дивитися набори","View packs"],
+    packs_close:["Свернуть","Згорнути","Collapse"],
+    packs_note:["Скидка для новых клиентов уже включена. Дополнительные услуги оплачиваются отдельно, индивидуальные пожелания обсуждаются отдельно.","Знижка для нових клієнтів уже включена. Додаткові послуги оплачуються окремо, індивідуальні побажання обговорюються окремо.","The new-client discount is already included. Extra services are paid separately; custom requests are discussed separately."],
+    go_order:["Перейти к заказу","Перейти до замовлення","Go to order"],
+    pack_tag:["Набор","Набір","Pack"],
+    pack_pick:["Выбрать набор","Обрати набір","Choose pack"],
+    pack_in:["В заказе ✓","У замовленні ✓","In order ✓"],
+    order_h:["Цены и заказ","Ціни та замовлення","Prices & order"],
+    order_p:["Выбранные наборы и отдельные услуги собираются в одну смету вместе с готовым сообщением менеджеру.","Обрані набори та окремі послуги збираються в один кошторис разом із готовим повідомленням менеджеру.","Selected packs and individual services are collected into one estimate, together with a ready message to the manager."],
+    terms1_b:["Срочно: ×2","Терміново: ×2","Rush: ×2"],
+    terms1_s:["Выполнение в кратчайшие сроки, стоимость умножается на два.","Виконання в найкоротші терміни, вартість множиться на два.","Done as fast as possible; the price is doubled."],
+    terms2_b:["Нет в прайсе?","Немає в прайсі?","Not on the list?"],
+    terms2_s:["Всё, что не указано выше, обсуждаем индивидуально. Цена договорная.","Усе, чого немає вище, обговорюємо індивідуально. Ціна договірна.","Anything not listed above is discussed individually. The price is negotiable."],
+    sum_h:["Ваш заказ","Ваше замовлення","Your order"],
+    sum_empty:["Пока ничего не выбрано","Поки нічого не обрано","Nothing selected yet"],
+    sum_rush:["Срочно, цена ×2","Терміново, ціна ×2","Rush, price ×2"],
+    sum_ph:["Коротко опишите задачу: что нужно, референсы, сроки","Коротко опишіть завдання: що потрібно, референси, терміни","Briefly describe the task: what you need, references, deadline"],
+    sum_total:["Итого","Разом","Total"],
+    sum_send:["Отправить менеджеру","Надіслати менеджеру","Send to manager"],
+    sum_copy:["Скопировать сообщение","Скопіювати повідомлення","Copy message"],
+    sum_copied:["Скопировано","Скопійовано","Copied"],
+    sum_hint:["Откроется Telegram с готовым текстом. Цену окончательно подтверждает менеджер.","Відкриється Telegram із готовим текстом. Остаточну ціну підтверджує менеджер.","Telegram will open with the text ready. The manager confirms the final price."],
+    msg_hello:["Здравствуйте! Хочу заказать в Axo SecretShop:","Вітаю! Хочу замовити в Axo SecretShop:","Hello! I'd like to order from Axo SecretShop:"],
+    msg_pack:["Набор","Набір","Pack"],
+    msg_rush:["Срочно (×2)","Терміново (×2)","Rush (×2)"],
+    msg_total:["Итого по прайсу:","Разом за прайсом:","Total by price list:"],
+    msg_task:["Задача:","Завдання:","Task:"],
+    msg_later:["(опишу ниже)","(опишу нижче)","(will describe below)"],
+    from:["от","від","from"],
+    unit:["шт.","шт.","pcs."],
+    process_h:["Как работаем","Як працюємо","How we work"],
+    process_p:["Четыре шага. Вы всегда знаете, что дальше.","Чотири кроки. Ви завжди знаєте, що далі.","Four steps. You always know what's next."],
+    st1_h:["Заявка","Заявка","Request"],
+    st1_p:["Собираете заказ здесь или пишете менеджеру напрямую.","Збираєте замовлення тут або пишете менеджеру напряму.","Build your order here or message the manager directly."],
+    st2_h:["Смета и сроки","Кошторис і терміни","Estimate & deadline"],
+    st2_p:["Менеджер подтверждает цену, сроки и условия оплаты.","Менеджер підтверджує ціну, терміни й умови оплати.","The manager confirms the price, deadline and payment terms."],
+    st3_h:["Работа","Робота","Work"],
+    st3_p:["Художница рисует и анимирует, промежуточный результат вы видите по ходу.","Художниця малює й анімує, проміжний результат ви бачите по ходу.","The artist draws and animates; you see interim results along the way."],
+    st4_h:["Сдача","Здача","Delivery"],
+    st4_p:["Получаете готовые файлы в нужных форматах.","Отримуєте готові файли у потрібних форматах.","You get the finished files in the formats you need."],
+    team_h:["Кто с вами работает","Хто з вами працює","Who you'll work with"],
+    team_p:["Вы общаетесь с менеджером, а делает художница.","Ви спілкуєтесь із менеджером, а робить художниця.","You talk to the manager; the artist does the work."],
+    mgr_h:["Менеджер","Менеджер","Manager"],
+    mgr_role:["Заказы, сроки, оплата","Замовлення, терміни, оплата","Orders, deadlines, payment"],
+    mgr_p:["Принимает заявки, считает смету, держит связь и следит, чтобы всё сдавалось вовремя.","Приймає заявки, рахує кошторис, тримає зв'язок і стежить, щоб усе здавалося вчасно.","Takes requests, prepares the estimate, stays in touch and makes sure everything is delivered on time."],
+    art_h:["Художница","Художниця","Artist"],
+    art_role:["Рисунок и анимация","Малюнок і анімація","Drawing & animation"],
+    art_p:["Рисует стикеры, эмодзи и персонажей, делает анимацию TGS и Spine.","Малює стікери, емодзі та персонажів, робить анімацію TGS і Spine.","Draws stickers, emoji and characters, makes TGS and Spine animation."],
+    faq_h:["Вопросы","Питання","FAQ"],
+    faq1_q:["Как сделать заказ?","Як зробити замовлення?","How do I place an order?"],
+    faq1_a:["Выберите услуги в блоке «Цены и заказ», нажмите «Отправить менеджеру». Откроется Telegram с готовым сообщением. Либо напишите @Rapgospod своими словами.","Оберіть послуги в блоці «Ціни та замовлення» і натисніть «Надіслати менеджеру». Відкриється Telegram із готовим повідомленням. Або напишіть @Rapgospod своїми словами.","Choose services in the “Prices & order” block and press “Send to manager”. Telegram will open with a ready message. Or just write to @Rapgospod in your own words."],
+    faq2_q:["Чем отличаются шаблонные и кастомные эмодзи?","Чим відрізняються шаблонні та кастомні емодзі?","What's the difference between template and custom emoji?"],
+    faq2_a:["Шаблонные делаются на основе готовых шаблонов анимации. Кастомные берут шаблон за основу и дорабатываются под вас. Полностью кастомные получают уникальную анимацию с нуля.","Шаблонні роблять на основі готових шаблонів анімації. Кастомні беруть шаблон за основу й доопрацьовуються під вас. Повністю кастомні отримують унікальну анімацію з нуля.","Template emoji are made from ready animation templates. Custom ones start from a template and are reworked for you. Fully custom ones get unique animation from scratch."],
+    faq3_q:["Что значит «срочно»?","Що означає «терміново»?","What does “rush” mean?"],
+    faq3_a:["Заказ выполняется в кратчайшие сроки, а стоимость умножается на два.","Замовлення виконується в найкоротші терміни, а вартість множиться на два.","The order is done as fast as possible and the price is doubled."],
+    faq4_q:["Можно заказать то, чего нет в прайсе?","Чи можна замовити те, чого немає в прайсі?","Can I order something that isn't on the price list?"],
+    faq4_a:["Да. Напишите менеджеру, что нужно. Цена в таком случае договорная.","Так. Напишіть менеджеру, що потрібно. Ціна в такому разі договірна.","Yes. Tell the manager what you need. The price is negotiable in that case."],
+    faq5_q:["Где посмотреть больше работ?","Де подивитися більше робіт?","Where can I see more work?"],
+    faq5_a:["В нашем портфолио в Telegram: t.me/axoportfolio.","У нашому портфоліо в Telegram: t.me/axoportfolio.","In our Telegram portfolio: t.me/axoportfolio."],
+    cta_h:["есть проект?","є проєкт?","got a project?"],
+    cta_p:["Напишите менеджеру, что хотите сделать, и он сразу назовёт цену и сроки.","Напишіть менеджеру, що хочете зробити, і він одразу назве ціну та терміни.","Tell the manager what you want to make and he'll quote a price and deadline right away."],
+    cta_write:["Написать @Rapgospod","Написати @Rapgospod","Message @Rapgospod"],
+    cta_port:["Портфолио","Портфоліо","Portfolio"],
+    bar_order:["Заказ","Замовлення","Order"],
+    bar_tg:["Написать в Telegram","Написати в Telegram","Message on Telegram"]
+  };
+  function t(k){var a=D[k];return a?a[LI]:k}
+  function L(a){return a[LI]}
+
+  /* ===== ПРАЙС ===== */
+  var PRICES=[
+    {g:["Статичные (PNG)","Статичні (PNG)","Static (PNG)"],c:"var(--sky)",items:[
+      {n:["Стикеры","Стікери","Stickers"],p:5,u:1},
+      {n:["Эмодзи","Емодзі","Emoji"],p:6,u:1}]},
+    {g:["Анимированные (TGS)","Анімовані (TGS)","Animated (TGS)"],c:"var(--violet)",items:[
+      {n:["Стикеры, упрощённые","Стікери, спрощені","Stickers, simplified"],p:40,u:1},
+      {n:["Стикеры, детализированные","Стікери, деталізовані","Stickers, detailed"],p:50,u:1},
+      {n:["Эмодзи, шаблонные","Емодзі, шаблонні","Emoji, template"],p:2,u:1},
+      {n:["Эмодзи, кастомные","Емодзі, кастомні","Emoji, custom"],p:20,u:1,note:["На основе шаблонов с индивидуальной проработкой","На основі шаблонів з індивідуальним опрацюванням","Based on templates with individual refinement"]},
+      {n:["Эмодзи, полностью кастомные","Емодзі, повністю кастомні","Emoji, fully custom"],p:30,u:1,note:["Уникальная анимация без шаблонов","Унікальна анімація без шаблонів","Unique animation, no templates"]}]},
+    {g:["Оформление канала и чата","Оформлення каналу та чату","Channel & chat design"],c:"var(--pink)",items:[
+      {n:["Аватарка","Аватарка","Avatar"],p:30},
+      {n:["Анимированная аватарка","Анімована аватарка","Animated avatar"],p:60},
+      {n:["Фон","Фон","Background"],p:30}]},
+    {g:["Анимация Spine","Анімація Spine","Spine animation"],c:"var(--orange)",items:[
+      {n:["Персонажи и объекты для игр","Персонажі та об'єкти для ігор","Characters & objects for games"],p:50,u:1},
+      {n:["Игровые символы","Ігрові символи","Game symbols"],p:20,u:1}]},
+    {g:["Дополнительно","Додатково","Extras"],c:"var(--mint)",items:[
+      {n:["PSD-файл персонажа для YouTube-модели","PSD-файл персонажа для YouTube-моделі","PSD file of a character for a YouTube model"],p:200},
+      {n:["NFT-коллекция","NFT-колекція","NFT collection"],p:200,from:1,note:["Цена от $200","Ціна від $200","Price from $200"]},
+      {n:["Логотип","Логотип","Logo"],p:50}]}
   ];
 
-  var PRICES = [
-    {g:"Статичные (PNG)", c:"var(--sky)", items:[
-      ["Стикеры",5,"шт."],
-      ["Эмодзи",6,"шт."]]},
-    {g:"Анимированные (TGS)", c:"var(--violet)", items:[
-      ["Стикеры, упрощённые",40,"шт."],
-      ["Стикеры, детализированные",50,"шт."],
-      ["Эмодзи, шаблонные",2,"шт."],
-      ["Эмодзи, кастомные",20,"шт.","На основе шаблонов с индивидуальной проработкой"],
-      ["Эмодзи, полностью кастомные",30,"шт.","Уникальная анимация без шаблонов"]]},
-    {g:"Оформление канала и чата", c:"var(--pink)", items:[
-      ["Аватарка",30,""],
-      ["Анимированная аватарка",60,""],
-      ["Фон",30,""]]},
-    {g:"Анимация Spine", c:"var(--orange)", items:[
-      ["Персонажи и объекты для игр",50,"шт."],
-      ["Игровые символы",20,"шт."]]},
-    {g:"Дополнительно", c:"var(--mint)", items:[
-      ["PSD-файл персонажа для YouTube-модели",200,""],
-      ["NFT-коллекция",200,"","Цена от $200", true],
-      ["Логотип",50,""]]}
+  /* ===== СТАРТОВЫЕ НАБОРЫ ===== */
+  var N={
+    sstk:["Статичные стикеры","Статичні стікери","Static stickers"],
+    semo:["Статичные эмодзи","Статичні емодзі","Static emoji"],
+    ava:["Аватарка","Аватарка","Avatar"],
+    sava:["Статичная аватарка","Статична аватарка","Static avatar"],
+    aava:["Анимированная аватарка","Анімована аватарка","Animated avatar"],
+    bg:["Фон канала","Фон каналу","Channel background"],
+    tsimple:["Упрощённые TGS-стикеры","Спрощені TGS-стікери","Simplified TGS stickers"],
+    tdet:["Детализированные TGS-стикеры","Деталізовані TGS-стікери","Detailed TGS stickers"],
+    temo:["Шаблонные TGS-эмодзи","Шаблонні TGS-емодзі","Template TGS emoji"]
+  };
+  var PACKS=[
+    {n:"Static Start",c:"var(--sky)",i:[["sstk",5],["semo",5]],old:55,p:49},
+    {n:"Static Pro",c:"var(--sky)",i:[["ava",1],["sstk",5],["semo",10],["bg",1]],old:145,p:130},
+    {n:"Animation Start",c:"var(--violet)",i:[["tsimple",4],["temo",5]],old:170,p:153},
+    {n:"Animation Pro",c:"var(--violet)",i:[["aava",1],["tdet",5],["temo",10]],old:330,p:295},
+    {n:"Mix Start",c:"var(--pink)",i:[["sava",1],["sstk",10],["temo",5]],old:90,p:81},
+    {n:"Mix Pro",c:"var(--pink)",i:[["aava",1],["tdet",10],["semo",10],["bg",1]],old:650,p:585}
   ];
-
-  /* Стартовые наборы: n название, c цвет, i состав, old обычная цена, p цена набора */
-  var PACKS = [
-    {n:"Static Start", c:"var(--sky)",    i:["Статичные стикеры, 5 шт.","Статичные эмодзи, 5 шт."], old:55,  p:49},
-    {n:"Static Pro",   c:"var(--sky)",    i:["Аватарка, 1 шт.","Статичные стикеры, 5 шт.","Статичные эмодзи, 10 шт.","Фон канала, 1 шт."], old:145, p:130},
-    {n:"Animation Start", c:"var(--violet)", i:["Упрощённые TGS-стикеры, 4 шт.","Шаблонные TGS-эмодзи, 5 шт."], old:170, p:153},
-    {n:"Animation Pro",c:"var(--violet)", i:["Анимированная аватарка, 1 шт.","Детализированные TGS-стикеры, 5 шт.","Шаблонные TGS-эмодзи, 10 шт."], old:330, p:295},
-    {n:"Mix Start",    c:"var(--pink)",   i:["Статичная аватарка, 1 шт.","Статичные стикеры, 10 шт.","Шаблонные TGS-эмодзи, 5 шт."], old:90,  p:81},
-    {n:"Mix Pro",      c:"var(--pink)",   i:["Анимированная аватарка, 1 шт.","Детализированные TGS-стикеры, 10 шт.","Статичные эмодзи, 10 шт.","Фон канала, 1 шт."], old:650, p:585}
-  ];
-  /* ============ /НАСТРОЙКИ ============ */
+  function packItems(pk){return pk.i.map(function(x){return L(N[x[0]])+", "+x[1]+" "+t("unit")})}
 
   function $(id){return document.getElementById(id)}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 
-  /* ---- works ---- */
-  var rail=$("rail"),count=$("count"),filters=$("filters"),active="Все";
-  function isVideo(s){return /\.(mp4|webm)$/i.test(s)}
-  function art(w,i){
-    var r=(i*37)%60,a=w.c[0],b=w.c[1];
+  /* ===== ВИТРИНА: собирается из works.json (его создаёт scripts/gen-works.js) ===== */
+  var CATS=[["s","tab_s"],["e","tab_e"],["a","tab_a"]];
+  var PH={s:[["#7b5cf0","#ff8fb8"],["#ffa23c","#ff8fb8"],["#7ec3ff","#7b5cf0"]],e:[["#b9a2ff","#7ec3ff"],["#7ec3ff","#ff8fb8"],["#ffa23c","#b9a2ff"]],ec:[["#ff8fb8","#b9a2ff"],["#7b5cf0","#7ec3ff"],["#ffa23c","#ff8fb8"]],el:[["#7ec3ff","#b9a2ff"],["#b9a2ff","#ff8fb8"],["#7b5cf0","#ffa23c"]],a:[["#b9a2ff","#ffa23c"],["#7ec3ff","#7b5cf0"],["#ff8fb8","#7ec3ff"],["#ffa23c","#7b5cf0"],["#b9a2ff","#7ec3ff"]]};
+  /* сколько рамок показывать в каждой вкладке */
+  var SLOTS={s:3,e:3,ec:1,el:3,a:5};
+  var SUBS=[["e","sub_e"],["ec","sub_ec"],["el","sub_el"]];
+  var ALL=[],active="s",sub="e";
+  var rail=$("rail"),count=$("count"),filters=$("filters"),subf=$("subfilters");
+  function isLot(x){return /\.(tgs|json)(\?|$)/i.test(x||"")}
+  function isVideo(x){return /\.(mp4|webm)(\?|$)/i.test(x||"")}
+  function art(c,i){
+    var r=(i*37)%60;
     return '<svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="g'+i+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#241c5a"/><stop offset="1" stop-color="#0e0a2a"/></linearGradient></defs><rect width="400" height="400" fill="url(#g'+i+')"/>'+
-      '<circle cx="'+(130+r)+'" cy="160" r="110" fill="'+a+'" opacity=".95"/><circle cx="'+(290-r)+'" cy="270" r="90" fill="'+b+'" opacity=".85"/>'+
+      '<circle cx="'+(130+r)+'" cy="160" r="110" fill="'+c[0]+'" opacity=".95"/><circle cx="'+(290-r)+'" cy="270" r="90" fill="'+c[1]+'" opacity=".85"/>'+
       '<circle cx="'+(60+r*2)+'" cy="70" r="6" fill="#fff"/><circle cx="330" cy="60" r="3" fill="#cfe8ff"/></svg>';
   }
-  function media(w,i){
-    if(!w.src)return art(w,i);
-    if(isVideo(w.src))return '<video src="'+w.src+'" autoplay muted loop playsinline></video>';
-    return '<img src="'+w.src+'" alt="'+w.t+'" loading="lazy">';
+  /* --- TGS через lottie-web --- */
+  var lottieP=null;
+  function loadLottie(){
+    if(window.lottie)return Promise.resolve();
+    if(lottieP)return lottieP;
+    lottieP=new Promise(function(res,rej){var sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js";sc.onload=res;sc.onerror=rej;document.head.appendChild(sc)});
+    return lottieP;
+  }
+  function gunzip(buf){
+    var u=new Uint8Array(buf);
+    if(u[0]!==0x1f||u[1]!==0x8b)return Promise.resolve(new TextDecoder().decode(u));
+    return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+  }
+  var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){
+    es.forEach(function(e){var a=e.target._anim;if(!a)return;e.isIntersecting?a.play():a.pause()});
+  },{threshold:.2}):null;
+  function mountLot(el,fallbackColors,i){
+    Promise.all([loadLottie(),fetch(el.dataset.src).then(function(r){if(!r.ok)throw new Error("404");return r.arrayBuffer()}).then(gunzip)]).then(function(a){
+      var anim=lottie.loadAnimation({container:el,renderer:"svg",loop:true,autoplay:false,animationData:JSON.parse(a[1])});
+      el._anim=anim;
+      if(io)io.observe(el);else anim.play();
+    }).catch(function(){el.innerHTML=art(fallbackColors,i)});
+  }
+  function curKey(){return active==="e"?sub:active}
+  function renderTabs(){
+    filters.innerHTML="";
+    CATS.forEach(function(c){
+      var b=document.createElement("button");b.type="button";b.textContent=t(c[1]);b.setAttribute("aria-pressed",c[0]===active);
+      b.onclick=function(){active=c[0];renderTabs();renderWorks()};
+      filters.appendChild(b);
+    });
+    subf.innerHTML="";subf.hidden=active!=="e";
+    if(active==="e")SUBS.forEach(function(c){
+      var b=document.createElement("button");b.type="button";b.textContent=t(c[1]);b.setAttribute("aria-pressed",c[0]===sub);
+      b.onclick=function(){sub=c[0];renderTabs();renderWorks()};
+      subf.appendChild(b);
+    });
   }
   function renderWorks(){
     rail.innerHTML="";
-    WORKS.forEach(function(w,i){
-      if(active!=="Все"&&w.cat!==active)return;
-      var el=document.createElement("article");el.className="work"+(w.wide?" wide":"");
-      el.innerHTML='<div class="cover">'+media(w,i)+'</div><h3>'+w.t+'</h3><p>'+w.d+'</p>';
+    var key=curKey(),base=key==="a"?"a":key==="s"?"s":"e";
+    var real=ALL.filter(function(w){return w.c===key});
+    var list=[],max=SLOTS[key];
+    real.forEach(function(w){if(w.n>max)max=w.n});
+    for(var n=1;n<=Math.max(max,SLOTS[key]);n++){
+      var f=real.filter(function(w){return w.n===n})[0];
+      if(f)list.push(f);else if(n<=SLOTS[key])list.push({c:key,n:n,ph:PH[key][(n-1)%PH[key].length]});
+    }
+    list.forEach(function(w,i){
+      var isReal=!w.ph;
+      var title=w.name||(t("w_"+base)+" "+w.n);
+      var sub2=isReal?(key==="s"||key==="a"?t("sub_"+key):t("sub_"+key)+", TGS"):t("soon");
+      var inner;
+      if(!isReal)inner=art(w.ph,i);
+      else if(isLot(w.src))inner='<div class="lot" data-src="'+esc(w.src)+'" role="img" aria-label="'+esc(title)+'"></div>';
+      else if(isVideo(w.src))inner='<video src="'+esc(w.src)+'" autoplay muted loop playsinline></video>';
+      else inner='<img src="'+esc(w.src)+'" alt="'+esc(title)+'" loading="lazy">';
+      var el=document.createElement("article");el.className="work"+(isReal?"":" empty");
+      el.innerHTML='<div class="cover">'+inner+'</div><h3>'+esc(title)+'</h3><p>'+esc(sub2)+'</p>';
       rail.appendChild(el);
+      var lt=el.querySelector(".lot");if(lt)mountLot(lt,PH[key][i%PH[key].length],i);
     });
     rail.scrollLeft=0;upd();
   }
-  var cats=["Все"];WORKS.forEach(function(w){if(cats.indexOf(w.cat)<0)cats.push(w.cat)});
-  cats.forEach(function(c){
-    var b=document.createElement("button");b.type="button";b.textContent=c;b.setAttribute("aria-pressed",c===active);
-    b.onclick=function(){active=c;[].forEach.call(filters.children,function(x){x.setAttribute("aria-pressed",x===b)});renderWorks()};
-    filters.appendChild(b);
-  });
   function pad(n){return (n<10?"0":"")+n}
   function step(){var f=rail.querySelector(".work");return f?f.getBoundingClientRect().width+18:300}
   function upd(){var n=rail.children.length;if(!n){count.textContent="";return}var i=Math.min(Math.round(rail.scrollLeft/step())+1,n);count.textContent=pad(i)+" / "+pad(n)}
   $("prev").onclick=function(){rail.scrollBy({left:-step(),behavior:"smooth"})};
   $("next").onclick=function(){rail.scrollBy({left:step(),behavior:"smooth"})};
   rail.addEventListener("scroll",upd,{passive:true});
-  renderWorks();
 
-  /* ---- packs: свернуть / развернуть ---- */
+  /* ===== наборы: свернуть / развернуть ===== */
   var tog=$("packtoggle"),body=$("packbody"),ptl=$("ptlabel");
-  function setPacks(open){
-    body.classList.toggle("open",open);
-    tog.setAttribute("aria-expanded",open);
-    ptl.textContent=open?"Свернуть":"Смотреть наборы";
-  }
+  function ptLabel(){ptl.textContent=body.classList.contains("open")?t("packs_close"):t("packs_open")}
+  function setPacks(open){body.classList.toggle("open",open);tog.setAttribute("aria-expanded",open);ptLabel()}
   tog.onclick=function(){setPacks(!body.classList.contains("open"))};
-  [].forEach.call(document.querySelectorAll('a[href="#packs"]'),function(a){
-    a.addEventListener("click",function(){setPacks(true)});
-  });
+  [].forEach.call(document.querySelectorAll('a[href="#packs"]'),function(a){a.addEventListener("click",function(){setPacks(true)})});
   if(location.hash==="#packs")setPacks(true);
 
-  /* ---- order builder ---- */
-  var state={},packSel={};var groups=$("groups");
-  var packgrid=$("packgrid");
-  PACKS.forEach(function(pk,k){
-    var el=document.createElement("div");el.className="pack";el.id="pk"+k;el.style.setProperty("--c",pk.c);
-    el.innerHTML='<div class="tag"><i></i>Набор</div><h3>'+pk.n+'</h3><ul>'+
-      pk.i.map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul>'+
-      '<div class="pr"><b>$'+pk.p+'</b><s>$'+pk.old+'</s><em>−$'+(pk.old-pk.p)+'</em></div>'+
-      '<button class="btn" type="button" data-pack="'+k+'">Выбрать набор</button>';
-    packgrid.appendChild(el);
-  });
-  packgrid.addEventListener("click",function(e){
-    var b=e.target.closest("button[data-pack]");if(!b)return;
-    var k=b.dataset.pack;packSel[k]=!packSel[k];
-    $("pk"+k).classList.toggle("on",!!packSel[k]);
-    b.textContent=packSel[k]?"В заказе ✓":"Выбрать набор";
-    var n=Object.keys(packSel).filter(function(x){return packSel[x]}).length;
-    $("packgo").textContent=n?"Перейти к заказу ("+n+")":"Перейти к заказу";
-    compute();
-  });
-  PRICES.forEach(function(g,gi){
-    var box=document.createElement("div");
-    var h='<h3 class="gh"><i style="background:'+g.c+';color:'+g.c+'"></i>'+g.g+'</h3>';
-    g.items.forEach(function(it,ii){
-      var id=gi+"-"+ii,from=it[4]?"от ":"";
-      h+='<div class="item" id="it'+id+'"><div><h4>'+it[0]+'</h4>'+(it[3]?'<p>'+it[3]+'</p>':'')+'</div>'+
-        '<b>'+from+'$'+it[1]+(it[2]?' / '+it[2]:'')+'</b>'+
-        '<div class="qty"><button type="button" data-id="'+id+'" data-d="-1" aria-label="Меньше">−</button><output id="q'+id+'">0</output><button type="button" data-id="'+id+'" data-d="1" aria-label="Больше">+</button></div></div>';
+  /* ===== конструктор заказа ===== */
+  var state={},packSel={};
+  var packgrid=$("packgrid"),groups=$("groups");
+  function packCount(){return Object.keys(packSel).filter(function(x){return packSel[x]}).length}
+  function goLabel(){var n=packCount();$("packgo").textContent=t("go_order")+(n?" ("+n+")":"")}
+  function renderPacks(){
+    packgrid.innerHTML="";
+    PACKS.forEach(function(pk,k){
+      var el=document.createElement("div");el.className="pack"+(packSel[k]?" on":"");el.id="pk"+k;el.style.setProperty("--c",pk.c);
+      el.innerHTML='<div class="tag"><i></i>'+t("pack_tag")+'</div><h3>'+pk.n+'</h3><ul>'+packItems(pk).map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul>'+
+        '<div class="pr"><b>$'+pk.p+'</b><s>$'+pk.old+'</s><em>−$'+(pk.old-pk.p)+'</em></div>'+
+        '<button class="btn" type="button" data-pack="'+k+'">'+(packSel[k]?t("pack_in"):t("pack_pick"))+'</button>';
+      packgrid.appendChild(el);
     });
-    box.innerHTML=h;groups.appendChild(box);
-  });
+    goLabel();
+  }
+  function renderPrices(){
+    groups.innerHTML="";
+    PRICES.forEach(function(g,gi){
+      var box=document.createElement("div");
+      var h='<h3 class="gh"><i style="background:'+g.c+';color:'+g.c+'"></i>'+L(g.g)+'</h3>';
+      g.items.forEach(function(it,ii){
+        var id=gi+"-"+ii,q=state[id]||0;
+        h+='<div class="item'+(q?" on":"")+'" id="it'+id+'"><div><h4>'+L(it.n)+'</h4>'+(it.note?'<p>'+L(it.note)+'</p>':'')+'</div>'+
+          '<b>'+(it.from?t("from")+" ":"")+'$'+it.p+(it.u?' / '+t("unit"):'')+'</b>'+
+          '<div class="qty"><button type="button" data-id="'+id+'" data-d="-1" aria-label="−">−</button><output id="q'+id+'">'+q+'</output><button type="button" data-id="'+id+'" data-d="1" aria-label="+">+</button></div></div>';
+      });
+      box.innerHTML=h;groups.appendChild(box);
+    });
+  }
   function find(id){var p=id.split("-");return PRICES[p[0]].items[p[1]]}
   var lines=$("lines"),total=$("total"),rush=$("rush"),brief=$("brief"),send=$("send");
   function compute(){
     var sum=0,anyFrom=false,txt=[],html="";
     Object.keys(state).forEach(function(id){
-      var q=state[id];if(!q)return;var it=find(id),s=it[1]*q;sum+=s;if(it[4])anyFrom=true;
-      txt.push("• "+it[0]+" × "+q+" — "+(it[4]?"от ":"")+"$"+s);
-      html+='<li><span>'+it[0]+' × '+q+'</span><span>'+(it[4]?"от ":"")+'$'+s+'</span></li>';
+      var q=state[id];if(!q)return;var it=find(id),s=it.p*q,fr=it.from?t("from")+" ":"";sum+=s;if(it.from)anyFrom=true;
+      txt.push("• "+L(it.n)+" × "+q+" — "+fr+"$"+s);
+      html+='<li><span>'+L(it.n)+' × '+q+'</span><span>'+fr+'$'+s+'</span></li>';
     });
     Object.keys(packSel).forEach(function(k){
       if(!packSel[k])return;var pk=PACKS[k];sum+=pk.p;
-      txt.push("• Набор "+pk.n+" ("+pk.i.join(", ")+") — $"+pk.p);
-      html+='<li><span>Набор '+pk.n+'</span><span>$'+pk.p+'</span></li>';
+      txt.push("• "+t("msg_pack")+" "+pk.n+" ("+packItems(pk).join(", ")+") — $"+pk.p);
+      html+='<li><span>'+t("msg_pack")+' '+pk.n+'</span><span>$'+pk.p+'</span></li>';
     });
-    if(rush.checked&&sum){sum*=2}
-    lines.innerHTML=html||'<li><span>Пока ничего не выбрано</span></li>';
-    total.textContent=(anyFrom?"от ":"")+"$"+sum;
-    var msg="Здравствуйте! Хочу заказать в Axo SecretShop:\n"+(txt.length?txt.join("\n"):"(опишу ниже)")+
-      (rush.checked?"\nСрочно (×2)":"")+(sum?"\nИтого по прайсу: "+(anyFrom?"от ":"")+"$"+sum:"")+
-      (brief.value.trim()?"\n\nЗадача: "+brief.value.trim():"");
+    if(rush.checked&&sum)sum*=2;
+    lines.innerHTML=html||'<li><span>'+t("sum_empty")+'</span></li>';
+    total.textContent=(anyFrom?t("from")+" ":"")+"$"+sum;
+    var msg=t("msg_hello")+"\n"+(txt.length?txt.join("\n"):t("msg_later"))+
+      (rush.checked?"\n"+t("msg_rush"):"")+(sum?"\n"+t("msg_total")+" "+(anyFrom?t("from")+" ":"")+"$"+sum:"")+
+      (brief.value.trim()?"\n\n"+t("msg_task")+" "+brief.value.trim():"");
     send.href="https://t.me/"+MANAGER+"?text="+encodeURIComponent(msg);
     return msg;
   }
+  packgrid.addEventListener("click",function(e){
+    var b=e.target.closest("button[data-pack]");if(!b)return;
+    var k=b.dataset.pack;packSel[k]=!packSel[k];
+    $("pk"+k).classList.toggle("on",!!packSel[k]);
+    b.textContent=packSel[k]?t("pack_in"):t("pack_pick");
+    goLabel();compute();
+  });
   groups.addEventListener("click",function(e){
     var b=e.target.closest("button[data-id]");if(!b)return;
     var id=b.dataset.id,q=Math.max(0,Math.min(99,(state[id]||0)+Number(b.dataset.d)));
@@ -581,12 +760,33 @@ footer a:hover{color:var(--paper)}
   rush.onchange=compute;brief.oninput=compute;
   $("copy").onclick=function(){
     var b=$("copy"),m=compute(),o=b.textContent;
-    function ok(){b.textContent="Скопировано";setTimeout(function(){b.textContent=o},1400)}
+    function ok(){b.textContent=t("sum_copied");setTimeout(function(){b.textContent=t("sum_copy")},1400)}
     try{navigator.clipboard.writeText(m).then(ok,function(){})}catch(e){}
   };
-  compute();
 
-  /* ---- hero: лепестки-жабры аксолотля и звёзды ---- */
+  /* ===== язык ===== */
+  function applyStatic(){
+    [].forEach.call(document.querySelectorAll("[data-i]"),function(e){e.textContent=t(e.getAttribute("data-i"))});
+    [].forEach.call(document.querySelectorAll("[data-ph]"),function(e){e.setAttribute("placeholder",t(e.getAttribute("data-ph")))});
+  }
+  function setLang(i,save){
+    LI=i;document.documentElement.lang=LANGS[i];
+    if(save){try{localStorage.setItem("axo-lang",LANGS[i])}catch(e){}}
+    [].forEach.call(document.querySelectorAll(".lang button"),function(b){b.setAttribute("aria-pressed",b.dataset.lang===LANGS[i])});
+    applyStatic();renderTabs();renderWorks();renderPacks();renderPrices();ptLabel();compute();
+  }
+  [].forEach.call(document.querySelectorAll(".lang button"),function(b){b.onclick=function(){setLang(LANGS.indexOf(b.dataset.lang),true)}});
+  function initialLang(){
+    try{var s=localStorage.getItem("axo-lang");if(s&&LANGS.indexOf(s)>=0)return LANGS.indexOf(s)}catch(e){}
+    var n=(navigator.language||"ru").toLowerCase();
+    return n.indexOf("uk")===0?1:n.indexOf("ru")===0?0:2;
+  }
+  setLang(initialLang(),false);
+  fetch("works.json",{cache:"no-cache"}).then(function(r){return r.ok?r.json():[]}).catch(function(){return[]}).then(function(a){
+    ALL=Array.isArray(a)?a:[];renderWorks();
+  });
+
+  /* ===== hero: лепестки-жабры аксолотля и звёзды ===== */
   var cv=$("field"),ctx=cv.getContext("2d");
   var petalCols=[["#cdb9ff","#8f72f5"],["#b9a2ff","#7b5cf0"],["#e3d6ff","#a98bff"],["#cfe8ff","#7ec3ff"],["#ffc2da","#ff8fb8"]];
   var W=0,H=0,dpr=1,P=[],S=[],mouse={x:-999,y:-999},reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -599,7 +799,6 @@ footer a:hover{color:var(--paper)}
     for(var j=0;j<Math.round(n/2);j++)S.push({x:Math.random()*W,y:Math.random()*H,r:2+Math.random()*4,ph:Math.random()*6.28});
   }
   function petal(r){
-    /* лист с зубчатым краем, как жабры на референсе */
     ctx.beginPath();ctx.moveTo(-r,0);
     ctx.bezierCurveTo(-r*.6,-r*.75,r*.5,-r*.8,r*1.1,-r*.1);
     ctx.lineTo(r*.75,-r*.05);ctx.lineTo(r*1.1,r*.2);
@@ -609,15 +808,15 @@ footer a:hover{color:var(--paper)}
     ctx.save();ctx.translate(x,y);ctx.globalAlpha=al;ctx.fillStyle="#fff";ctx.beginPath();
     ctx.moveTo(0,-r);ctx.quadraticCurveTo(0,0,r,0);ctx.quadraticCurveTo(0,0,0,r);ctx.quadraticCurveTo(0,0,-r,0);ctx.quadraticCurveTo(0,0,0,-r);ctx.fill();ctx.restore();
   }
-  function draw(t){
+  function draw(tm){
     ctx.clearRect(0,0,W,H);
-    for(var j=0;j<S.length;j++){var s=S[j];star(s.x,s.y,s.r,reduce?.7:.35+.55*Math.abs(Math.sin(t/900+s.ph)))}
+    for(var j=0;j<S.length;j++){var s=S[j];star(s.x,s.y,s.r,reduce?.7:.35+.55*Math.abs(Math.sin(tm/900+s.ph)))}
     for(var i=0;i<P.length;i++){
       var p=P[i];
       if(!reduce){
         var dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
         if(d<150&&d>0){var f=(150-d)/150*1.2;p.vx+=dx/d*f;p.vy+=dy/d*f}
-        p.vx+=Math.sin(t/1800+p.ph)*.012;p.vy+=.014+Math.cos(t/2300+p.ph)*.01;
+        p.vx+=Math.sin(tm/1800+p.ph)*.012;p.vy+=.014+Math.cos(tm/2300+p.ph)*.01;
         p.vx*=.95;p.vy*=.95;p.x+=p.vx+.12;p.y+=p.vy;p.a+=p.s;
         if(p.y>H+30){p.y=-30;p.x=Math.random()*W}
         if(p.x>W+30)p.x=-30;if(p.x<-30)p.x=W+30;

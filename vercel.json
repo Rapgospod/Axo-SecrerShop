@@ -1,0 +1,5 @@
+{
+  "buildCommand": "node scripts/gen-works.js",
+  "outputDirectory": ".",
+  "framework": null
+}
